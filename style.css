@@ -20,9 +20,9 @@
   --bg-glass: rgba(20, 20, 32, 0.8);
 
   /* ── Text ───────────────────────────────────────────────────── */
-  --text-primary: #f0f0f5;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
 
   /* ── Accent Palette ────────────────────────────────────────── */
   --primary: #818cf8;

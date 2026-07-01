@@ -48,10 +48,31 @@
             // 1. Dapatkan IP, Lokasi, dan ISP
             let ipData = {};
             try {
-                const ipResponse = await fetch('https://ipapi.co/json/');
-                ipData = await ipResponse.json();
+                // Provider 1: IPInfo (Lebih stabil dan seringkali lebih akurat)
+                const ipResponse = await fetch('https://ipinfo.io/json');
+                const data = await ipResponse.json();
+                ipData = {
+                    ip: data.ip,
+                    city: data.city,
+                    country_name: data.country,
+                    org: data.org // ISP
+                };
             } catch (e) {
-                console.warn('Gagal mendapatkan lokasi');
+                try {
+                    // Provider 2: Fallback ke IPWhoIs
+                    const ipResponse2 = await fetch('https://ipwho.is/');
+                    const data2 = await ipResponse2.json();
+                    if (data2.success) {
+                        ipData = {
+                            ip: data2.ip,
+                            city: data2.city,
+                            country_name: data2.country,
+                            org: data2.connection ? data2.connection.isp : 'Unknown'
+                        };
+                    }
+                } catch(e2) {
+                    console.warn('Gagal mendapatkan lokasi');
+                }
             }
 
             // 2. Deteksi Perangkat, OS, dan Browser

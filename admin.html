@@ -106,6 +106,8 @@
     .badge-primary { background: rgba(129, 140, 248, 0.2); color: var(--primary); }
     .badge-new { background: rgba(16, 185, 129, 0.2); color: var(--success); }
     .badge-return { background: rgba(244, 114, 182, 0.2); color: var(--accent); }
+    .badge-online { background: rgba(16, 185, 129, 0.1); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-offline { background: rgba(255, 255, 255, 0.05); color: var(--text-secondary); }
     
     .small-text {
       font-size: 12px;
@@ -238,9 +240,23 @@
             }
         }
 
+        let onlineStatusHTML = '<span class="badge badge-offline">🔴 OFFLINE</span>';
+        if (visitor.last_active_at) {
+            const lastActive = new Date(visitor.last_active_at).getTime();
+            const now = new Date().getTime();
+            const diffSeconds = (now - lastActive) / 1000;
+            // Jika aktif dalam 30 detik terakhir, anggap Online
+            if (diffSeconds < 30) {
+                onlineStatusHTML = '<span class="badge badge-online">🟢 ONLINE</span>';
+            }
+        }
+
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td style="white-space: nowrap; color: var(--text-secondary); font-size: 13px;">${date}</td>
+          <td style="white-space: nowrap; color: var(--text-secondary); font-size: 13px;">
+            <div style="margin-bottom: 6px;">${onlineStatusHTML}</div>
+            ${date}
+          </td>
           <td>
             ${visitorTypeHTML}
             <div style="margin-top: 6px;"><code>${visitor.ip_address || '-'}</code></div>

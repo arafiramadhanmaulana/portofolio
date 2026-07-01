@@ -120,6 +120,24 @@
                 body: JSON.stringify(visitorData)
             });
 
+            // 4. Heartbeat (Ping) setiap 15 detik agar admin tahu pengunjung masih online
+            setInterval(() => {
+                if (document.visibilityState === 'visible') {
+                    const duration = Math.floor((Date.now() - startTime) / 1000);
+                    const clickString = clicksTracked.length > 0 ? clicksTracked.join(' | ') : '';
+                    
+                    fetch(`${SUPABASE_URL}/rest/v1/visitors?session_id=eq.${sessionId}`, {
+                        method: 'PATCH',
+                        headers: headers,
+                        body: JSON.stringify({
+                            duration_seconds: duration,
+                            last_active_at: new Date().toISOString(),
+                            clicks: clickString
+                        })
+                    }).catch(e => console.warn('Ping error'));
+                }
+            }, 15000);
+
         } catch (error) {
             console.error('Tracking init error:', error);
         }
@@ -129,16 +147,14 @@
     window.addEventListener('visibilitychange', () => {
         if (document.visibilityState === 'hidden') {
             const duration = Math.floor((Date.now() - startTime) / 1000);
-            
-            // Format clicks array to a readable string
             const clickString = clicksTracked.length > 0 ? clicksTracked.join(' | ') : 'No interactions';
 
-            // Kirim update (gunakan keepalive agar request tetap jalan walau tab ditutup)
             fetch(`${SUPABASE_URL}/rest/v1/visitors?session_id=eq.${sessionId}`, {
                 method: 'PATCH',
                 headers: headers,
                 body: JSON.stringify({
                     duration_seconds: duration,
+                    last_active_at: new Date().toISOString(),
                     clicks: clickString
                 }),
                 keepalive: true

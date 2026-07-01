@@ -3,8 +3,8 @@
    GSAP 3.12 · ScrollTrigger · Lenis · Lucide · Canvas Particles
    ============================================================ */
 
-// ── Global: Contact Form Handler ────────────────────────────
-function handleContactSubmit(e) {
+// ── Global: Contact Form Handler (Web3Forms) ─────────────────
+async function handleContactSubmit(e) {
   if (e) e.preventDefault();
 
   const name    = document.getElementById('c-name')?.value.trim()    || '';
@@ -30,26 +30,54 @@ function handleContactSubmit(e) {
 
   if (submitBtn) {
     submitBtn.disabled  = true;
-    submitBtn.innerHTML = '<span class="spinner"></span> Sending…';
+    submitBtn.innerHTML = '<span class="spinner" style="display:inline-block; width:14px; height:14px; border:2px solid #fff; border-bottom-color:transparent; border-radius:50%; animation:spin 1s linear infinite; margin-right:8px;"></span> Mengirim...';
+  }
+  if (feedback) {
+    feedback.style.display = 'none';
   }
 
-  setTimeout(() => {
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        access_key: '5aee78ef-4f0a-4d63-a215-1cb29de8b51d',
+        subject: 'Pesan Baru dari Portofolio - ' + name,
+        from_name: name,
+        email: email,
+        layanan_diminati: services.length > 0 ? services.join(', ') : 'Tidak ada',
+        message: message
+      })
+    });
+
+    const result = await response.json();
+
+    if (response.status === 200) {
+      if (feedback) {
+        feedback.style.display = 'block';
+        feedback.style.color = 'var(--success, #10b981)';
+        feedback.textContent = '✅ Pesan berhasil dikirim! Arafi akan segera membalas email Anda.';
+      }
+      document.getElementById('contact-form')?.reset();
+    } else {
+      throw new Error(result.message || 'Gagal mengirim pesan');
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error);
     if (feedback) {
       feedback.style.display = 'block';
-      feedback.textContent   = 'Message prepared! Redirecting to WhatsApp…';
+      feedback.style.color = '#ef4444';
+      feedback.textContent = '❌ Terjadi kesalahan. Silakan coba lagi.';
     }
-
-    const waMsg = encodeURIComponent(
-      `Hi, I'm *${name}*\nEmail: ${email}\nServices: ${services.join(', ') || 'N/A'}\n\n${message}`
-    );
-    const waURL = `https://wa.me/6289515928647?text=${waMsg}`;
-    window.open(waURL, '_blank');
-
+  } finally {
     if (submitBtn) {
       submitBtn.disabled  = false;
-      submitBtn.innerHTML = 'Send Message';
+      submitBtn.innerHTML = 'Kirim Pesan <span class="btn-plane"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></span>';
     }
-  }, 1500);
+  }
 }
 
 

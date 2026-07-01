@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard - Visitor Analytics</title>
+  <title>Admin Dashboard - Advanced Visitor Analytics</title>
   <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='50' fill='%23818cf8'/><text y='65' x='20' font-family='sans-serif' font-size='60' font-weight='bold' fill='white'>AR</text></svg>">
   <style>
     :root {
       --bg-dark: #0a0a0f;
       --bg-card: #141420;
       --text-primary: #f8fafc;
-      --text-secondary: #cbd5e1;
+      --text-secondary: #94a3b8;
       --primary: #818cf8;
+      --accent: #f472b6;
+      --success: #10b981;
       --border-light: rgba(255, 255, 255, 0.06);
     }
     body {
@@ -22,7 +24,7 @@
       color: var(--text-primary);
     }
     .container {
-      max-width: 1200px;
+      max-width: 1300px;
       margin: 0 auto;
       padding: 40px 20px;
     }
@@ -40,7 +42,7 @@
     }
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
       margin-bottom: 40px;
     }
@@ -51,14 +53,14 @@
       padding: 24px;
     }
     .stat-title {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-secondary);
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 10px;
     }
     .stat-value {
-      font-size: 36px;
+      font-size: 32px;
       font-weight: bold;
       color: var(--text-primary);
     }
@@ -71,18 +73,18 @@
       border: 1px solid var(--border-light);
     }
     th, td {
-      padding: 16px 20px;
+      padding: 16px;
       text-align: left;
       border-bottom: 1px solid var(--border-light);
+      font-size: 14px;
     }
     th {
       background-color: rgba(255,255,255,0.02);
       color: var(--text-secondary);
       font-weight: 600;
-      font-size: 14px;
+      white-space: nowrap;
     }
     td {
-      font-size: 14px;
       color: var(--text-primary);
     }
     tr:hover {
@@ -96,9 +98,25 @@
     .badge {
       padding: 4px 8px;
       border-radius: 4px;
+      font-size: 11px;
+      font-weight: bold;
+      display: inline-block;
+      margin-right: 6px;
+    }
+    .badge-primary { background: rgba(129, 140, 248, 0.2); color: var(--primary); }
+    .badge-new { background: rgba(16, 185, 129, 0.2); color: var(--success); }
+    .badge-return { background: rgba(244, 114, 182, 0.2); color: var(--accent); }
+    
+    .small-text {
       font-size: 12px;
-      background: rgba(129, 140, 248, 0.2);
-      color: var(--primary);
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+    .clicks-list {
+      max-width: 250px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -106,32 +124,39 @@
 
 <div class="container">
   <div class="header">
-    <h1>Analytics Dashboard</h1>
+    <h1>Advanced Stalker Dashboard</h1>
     <button onclick="fetchData()" style="padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">Refresh Data</button>
   </div>
 
   <div class="stats-grid">
     <div class="stat-card">
-      <div class="stat-title">Total Pengunjung</div>
-      <div class="stat-value" id="total-visitors">-</div>
+      <div class="stat-title">Total Kunjungan</div>
+      <div class="stat-value" id="total-visits">-</div>
     </div>
     <div class="stat-card">
-      <div class="stat-title">Pengunjung Hari Ini</div>
-      <div class="stat-value" id="today-visitors">-</div>
+      <div class="stat-title">Kunjungan Hari Ini</div>
+      <div class="stat-value" id="today-visits">-</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-title">Unik Visitor</div>
+      <div class="stat-value" id="unique-visitors">-</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-title">Rata-rata Durasi</div>
+      <div class="stat-value" id="avg-duration">-</div>
     </div>
   </div>
 
-  <h3>Riwayat Kunjungan</h3>
   <div style="overflow-x: auto;">
     <table id="visitors-table">
       <thead>
         <tr>
           <th>Waktu</th>
-          <th>IP Address</th>
-          <th>Lokasi</th>
+          <th>Visitor</th>
+          <th>Lokasi & Jaringan</th>
           <th>Perangkat</th>
-          <th>OS & Browser</th>
-          <th>Halaman</th>
+          <th>Durasi</th>
+          <th>Aktivitas & Klik</th>
         </tr>
       </thead>
       <tbody id="table-body">
@@ -144,6 +169,14 @@
 <script>
   const SUPABASE_URL = 'https://bsatkunfxyclbmraoczo.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_R1Qum0HdYElJ1tTHAEXzIQ_aiQFwO8_';
+
+  function formatDuration(seconds) {
+    if (!seconds) return '-';
+    if (seconds < 60) return `${seconds} dtk`;
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m}m ${s}s`;
+  }
 
   async function fetchData() {
     document.getElementById('table-body').innerHTML = '<tr><td colspan="6" class="loading">Loading data...</td></tr>';
@@ -162,14 +195,20 @@
         throw new Error(data.error.message || "Gagal mengambil data");
       }
 
-      // Update Stats
-      document.getElementById('total-visitors').textContent = data.length;
+      // Stats Calculation
+      document.getElementById('total-visits').textContent = data.length;
       
       const today = new Date().toISOString().split('T')[0];
       const todayCount = data.filter(v => v.created_at.startsWith(today)).length;
-      document.getElementById('today-visitors').textContent = todayCount;
+      document.getElementById('today-visits').textContent = todayCount;
 
-      // Update Table
+      const uniqueVisitors = new Set(data.map(v => v.visitor_id).filter(id => id)).size;
+      document.getElementById('unique-visitors').textContent = uniqueVisitors > 0 ? uniqueVisitors : data.length;
+
+      const totalDur = data.reduce((acc, curr) => acc + (curr.duration_seconds || 0), 0);
+      document.getElementById('avg-duration').textContent = data.length > 0 ? formatDuration(Math.floor(totalDur / data.length)) : '-';
+
+      // Table Render
       const tbody = document.getElementById('table-body');
       tbody.innerHTML = '';
       
@@ -178,27 +217,57 @@
         return;
       }
 
+      // To determine if returning visitor, we check if their first visit is older than this row
+      const firstVisitMap = {};
+      data.forEach(v => {
+        if (v.visitor_id && (!firstVisitMap[v.visitor_id] || new Date(v.created_at) < new Date(firstVisitMap[v.visitor_id]))) {
+          firstVisitMap[v.visitor_id] = v.created_at;
+        }
+      });
+
       data.forEach(visitor => {
         const date = new Date(visitor.created_at).toLocaleString('id-ID');
+        
+        let visitorTypeHTML = '';
+        if (visitor.visitor_id) {
+            const isReturning = firstVisitMap[visitor.visitor_id] !== visitor.created_at;
+            if (isReturning) {
+                visitorTypeHTML = '<span class="badge badge-return">RETURNING</span>';
+            } else {
+                visitorTypeHTML = '<span class="badge badge-new">NEW</span>';
+            }
+        }
+
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td style="white-space: nowrap; color: var(--text-secondary); font-size: 13px;">${date}</td>
-          <td><code>${visitor.ip_address || '-'}</code></td>
-          <td>${visitor.city || '-'}, ${visitor.country || '-'}</td>
-          <td><span class="badge">${visitor.device_type || '-'}</span></td>
-          <td>${visitor.os || '-'} / ${visitor.browser || '-'}</td>
-          <td style="color: var(--text-secondary);">${visitor.page_visited || '-'}</td>
+          <td>
+            ${visitorTypeHTML}
+            <div style="margin-top: 6px;"><code>${visitor.ip_address || '-'}</code></div>
+          </td>
+          <td>
+            <div style="font-weight: 500;">${visitor.isp && visitor.isp !== 'Unknown' ? visitor.isp : '-'}</div>
+            <div class="small-text">${visitor.city || '-'}, ${visitor.country || '-'}</div>
+          </td>
+          <td>
+            <span class="badge badge-primary">${visitor.device_type || '-'}</span>
+            <div class="small-text">${visitor.os || '-'} / ${visitor.browser || '-'}</div>
+          </td>
+          <td style="font-weight: bold; color: var(--primary);">${formatDuration(visitor.duration_seconds)}</td>
+          <td>
+            <div style="color: white; margin-bottom: 4px;">${visitor.page_visited || '-'}</div>
+            <div class="clicks-list">${visitor.clicks ? visitor.clicks.replace(/ \| /g, '<br>• ') : '<span style="color:var(--border-light)">-</span>'}</div>
+          </td>
         `;
         tbody.appendChild(tr);
       });
       
     } catch (error) {
       console.error(error);
-      document.getElementById('table-body').innerHTML = `<tr><td colspan="6" class="loading" style="color: #ef4444;">Error: Tabel 'visitors' belum dibuat atau kredensial salah. Pastikan Anda sudah menjalankan script SQL di Supabase.</td></tr>`;
+      document.getElementById('table-body').innerHTML = `<tr><td colspan="6" class="loading" style="color: #ef4444;">Error: Tabel belum terupdate atau kredensial salah. Pastikan Anda sudah menjalankan script SQL V2 di Supabase.</td></tr>`;
     }
   }
 
-  // Load data on page load
   fetchData();
 </script>
 

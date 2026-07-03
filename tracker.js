@@ -1,5 +1,4 @@
 (async function() {
-    // Kredensial Supabase
     const SUPABASE_URL = 'https://bsatkunfxyclbmraoczo.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_R1Qum0HdYElJ1tTHAEXzIQ_aiQFwO8_';
     
@@ -10,7 +9,6 @@
         'Prefer': 'return=minimal'
     };
 
-    // Session & Visitor Identification
     function generateId() {
         return Math.random().toString(36).substring(2) + Date.now().toString(36);
     }
@@ -21,7 +19,6 @@
         localStorage.setItem('portofolio_visitor_id', visitorId);
     }
     
-    // Jangan track ganda saat refresh biasa (sessionStorage)
     const sessionId = sessionStorage.getItem('portofolio_session_id') || generateId();
     const isNewSession = !sessionStorage.getItem('portofolio_session_id');
     sessionStorage.setItem('portofolio_session_id', sessionId);
@@ -29,13 +26,11 @@
     const startTime = Date.now();
     let clicksTracked = [];
 
-    // Lacak interaksi klik (hanya elemen penting)
     document.addEventListener('click', (e) => {
-        const target = e.target.closest('a, button, .project-card, .gallery-item');
+        const target = e.target.closest('a, button, .card, .gallery-item');
         if (target) {
             let label = target.innerText?.trim().substring(0, 30);
             if (!label) label = target.title || target.getAttribute('data-caption') || target.tagName;
-            // Bersihkan teks
             label = label.replace(/\n/g, ' ').trim();
             if (label && label.length > 0) {
                 clicksTracked.push(label);
@@ -45,21 +40,18 @@
 
     if (isNewSession) {
         try {
-            // 1. Dapatkan IP, Lokasi, dan ISP
             let ipData = {};
             try {
-                // Provider 1: IPInfo (Lebih stabil dan seringkali lebih akurat)
                 const ipResponse = await fetch('https://ipinfo.io/json');
                 const data = await ipResponse.json();
                 ipData = {
                     ip: data.ip,
                     city: data.city,
                     country_name: data.country,
-                    org: data.org // ISP
+                    org: data.org
                 };
             } catch (e) {
                 try {
-                    // Provider 2: Fallback ke IPWhoIs
                     const ipResponse2 = await fetch('https://ipwho.is/');
                     const data2 = await ipResponse2.json();
                     if (data2.success) {
@@ -71,11 +63,10 @@
                         };
                     }
                 } catch(e2) {
-                    console.warn('Gagal mendapatkan lokasi');
+                    console.warn('Location fetch failed');
                 }
             }
 
-            // 2. Deteksi Perangkat, OS, dan Browser
             const ua = navigator.userAgent;
             let browser = "Unknown";
             if (ua.indexOf("Firefox") > -1) browser = "Firefox";
@@ -95,7 +86,6 @@
             const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
             const deviceType = isMobile ? "Mobile" : "Desktop";
 
-            // 3. Kirim Data Awal
             const visitorData = {
                 visitor_id: visitorId,
                 session_id: sessionId,
@@ -120,7 +110,6 @@
                 body: JSON.stringify(visitorData)
             });
 
-            // 4. Heartbeat (Ping) setiap 15 detik agar admin tahu pengunjung masih online
             setInterval(() => {
                 if (document.visibilityState === 'visible') {
                     const duration = Math.floor((Date.now() - startTime) / 1000);
@@ -143,7 +132,6 @@
         }
     }
 
-    // 4. Update Durasi dan Klik saat akan keluar/berpindah tab
     window.addEventListener('visibilitychange', () => {
         if (document.visibilityState === 'hidden') {
             const duration = Math.floor((Date.now() - startTime) / 1000);

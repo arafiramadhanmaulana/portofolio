@@ -7,259 +7,689 @@
   <meta name="description" content="Portfolio professional Arafi Ramadhan Maulana, lulusan Sains Data ITERA. Data Science, Machine Learning, dan Full-Stack Web Development.">
   <meta name="keywords" content="Arafi Ramadhan Maulana, ITERA, Sains Data, Data Scientist, Full-Stack Developer, React, FastAPI, Python">
   <meta name="author" content="Arafi Ramadhan Maulana">
-  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='50' fill='%23111'/><text y='65' x='20' font-family='sans-serif' font-size='60' font-weight='bold' fill='%23ededed'>AR</text></svg>">
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='50' fill='%23818cf8'/><text y='65' x='20' font-family='sans-serif' font-size='60' font-weight='bold' fill='white'>AR</text></svg>">
+  <link rel="preload" as="image" href="photo.jpeg">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
-  <script src="tracker.js" defer></script>
 </head>
 <body>
 
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- Particle Background Canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="cursor"></div>
+  <div class="custom-cursor-follower" id="cursor-follower"></div>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-door preloader-left" id="preloader-left"></div>
+    <div class="preloader-content" id="preloader-content">
+      <div class="preloader-logo">ARAFI</div>
+      <div class="preloader-sub">Membangun Masa Depan Digital</div>
+      <div class="preloader-bar-bg">
+        <div class="preloader-bar" id="preloader-bar"></div>
+      </div>
+      <div class="preloader-percent" id="preloader-percent">0%</div>
+    </div>
+    <div class="preloader-door preloader-right" id="preloader-right"></div>
+  </div>
+
+  <!-- Navigation -->
   <header>
-    <div class="container nav-inner">
-      <a href="#home" class="nav-brand">
-        <img src="photo.jpeg" alt="" width="28" height="28">
-        ARAFI RAMADHAN
-      </a>
-      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-      </button>
-      <nav class="nav-links" id="nav-links">
-        <a href="#home">Beranda</a>
-        <a href="#skills">Keahlian</a>
-        <a href="#experience">Pengalaman</a>
-        <a href="#projects">Proyek</a>
-        <a href="#contact">Kontak</a>
-      </nav>
+    <a href="#home" class="logo-container glass-nav">
+      <div class="logo-circle">
+        <img src="photo.jpeg" alt="" width="40" height="40">
+      </div>
+      <span class="logo-text">ARAFI RAMADHAN MAULANA</span>
+    </a>
+    <nav class="desktop-nav glass-nav">
+      <div class="nav-pill-bg" id="nav-pill"></div>
+      <a href="#home" class="active"><i data-lucide="house"></i>Beranda</a>
+      <a href="#about"><i data-lucide="user"></i>Tentang</a>
+      <a href="#skills"><i data-lucide="cpu"></i>Keahlian</a>
+      <a href="#experience"><i data-lucide="briefcase"></i>Riwayat</a>
+      <a href="#projects"><i data-lucide="code-2"></i>Proyek</a>
+      <a href="#contact"><i data-lucide="mail"></i>Kontak</a>
+    </nav>
+    <div class="header-action">
+      <a href="https://wa.me/6289515928647" target="_blank" class="header-btn glass-nav">Hubungi Saya</a>
     </div>
   </header>
 
-  <main>
-    <section id="home" class="hero" style="border-top: none;">
-      <div class="container">
-        <h1 class="hero-title">Arafi Ramadhan Maulana</h1>
-        <p class="hero-subtitle">Data Science Graduate at ITERA. Memiliki rekam jejak dalam pengembangan sistem manajemen data berbasis web dan machine learning. Fokus membangun aplikasi berkinerja tinggi, efisien, dan production-ready.</p>
-        <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">Lihat Proyek</a>
-          <a href="https://github.com/arafiramadhanmaulana" target="_blank" class="btn btn-outline">GitHub</a>
-          <a href="https://www.linkedin.com/in/arafiramadhanmaulana" target="_blank" class="btn btn-outline">LinkedIn</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">Teknologi &amp; Tools Utama</h2>
-          <p class="section-desc">Kumpulan teknologi yang sering saya gunakan dalam pengembangan.</p>
-        </div>
-        
-        <div class="grid-3">
-          <div class="card">
-            <h3 class="card-title">Bahasa Pemrograman</h3>
-            <p class="card-desc">Fokus pada performa dan skalabilitas sistem.</p>
-            <div class="skill-list">
-              <span class="badge">Python</span>
-              <span class="badge">R</span>
-              <span class="badge">JavaScript</span>
-              <span class="badge">PHP</span>
-              <span class="badge">HTML/CSS</span>
-            </div>
-          </div>
-          <div class="card">
-            <h3 class="card-title">Framework & Library</h3>
-            <p class="card-desc">Membangun arsitektur yang kokoh di sisi frontend dan backend.</p>
-            <div class="skill-list">
-              <span class="badge">React.js</span>
-              <span class="badge">FastAPI</span>
-              <span class="badge">Flask</span>
-              <span class="badge">Streamlit</span>
-            </div>
-          </div>
-          <div class="card">
-            <h3 class="card-title">Database & DevOps</h3>
-            <p class="card-desc">Manajemen data yang efisien dan deployment yang aman.</p>
-            <div class="skill-list">
-              <span class="badge">PostgreSQL</span>
-              <span class="badge">MySQL</span>
-              <span class="badge">Supabase</span>
-              <span class="badge">Docker</span>
-              <span class="badge">Vercel</span>
-              <span class="badge">Render</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="experience">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">Perjalanan Profesional</h2>
-          <p class="section-desc">Pengalaman karir dan organisasi yang membentuk keahlian saya.</p>
-        </div>
-
-        <div class="timeline">
-          <div class="t-item">
-            <div class="t-date">Apr 2026 - Saat ini</div>
-            <div class="t-content">
-              <h3>Full-Stack Web Developer</h3>
-              <h4>Pekerja Lepas | Self-Employed</h4>
-              <p>Mengembangkan platform Tabulasi Pemilu Real-Time dan Platform Manajemen Organisasi & Relawan Terintegrasi (ORP) dengan arsitektur aman dan Role-Based Access Control (RBAC).</p>
-            </div>
-          </div>
-
-          <div class="t-item">
-            <div class="t-date">Jul 2025 - Agu 2025</div>
-            <div class="t-content">
-              <h3>Sales Data Analytics Intern</h3>
-              <h4>Telkomsel Smart Office (TSO) Jakarta</h4>
-              <p>Membangun microsite e-Playbook IndiHome dan dashboard penjualan Orbit Agent untuk manajemen dokumen otomatis dan visualisasi kinerja agen.</p>
-            </div>
-          </div>
-          
-          <div class="t-item">
-            <div class="t-date">Jan 2026 - Jun 2026</div>
-            <div class="t-content">
-              <h3>Asisten Praktikum</h3>
-              <h4>Institut Teknologi Sumatera</h4>
-              <p>Mengajar Analisis Deret Waktu, Visualisasi Data, dan Analisis Big Data.</p>
-            </div>
-          </div>
-
-          <div class="t-item">
-            <div class="t-date">Jul 2024 - Agu 2024</div>
-            <div class="t-content">
-              <h3>Data Analyst Intern</h3>
-              <h4>PT eBdesk Teknologi</h4>
-              <p>Memproses dan memperbarui data kueri media, membuat visualisasi data, dan meninjau akurasi presentasi analitik klien.</p>
-            </div>
-          </div>
-
-          <div class="t-item">
-            <div class="t-date">Agu 2022 - Mei 2026</div>
-            <div class="t-content">
-              <h3>S1 Sains Data (IPK: 3.24)</h3>
-              <h4>Institut Teknologi Sumatera</h4>
-              <p>Fokus pada Machine Learning, Pemodelan Stokastik, Analisis Big Data, dan Rekayasa Perangkat Lunak.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="gallery">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">Galeri &amp; Sertifikasi</h2>
-          <p class="section-desc">Bukti nyata pengalaman dan sertifikat pencapaian.</p>
-        </div>
-        <div class="gallery-grid">
-          <div class="gallery-item"><img src="Sertifikat%20Asisten%20Praktikum%20Data%20Mining.jpg" alt="Data Mining" loading="lazy"></div>
-          <div class="gallery-item"><img src="Sertifikat%20Asisten%20Praktikum%20Pergudangan%20Data.jpg" alt="Pergudangan Data" loading="lazy"></div>
-          <div class="gallery-item"><img src="Penyerahan%20Dashboard%20Desa%20Kalisari.jpg" alt="Dashboard Desa Kalisari" loading="lazy"></div>
-          <div class="gallery-item"><img src="Presentasi%20Proyek%20IndiHome%20e-Playbook.jpg" alt="IndiHome e-Playbook" loading="lazy"></div>
-          <div class="gallery-item"><img src="Orbit%20Academy%202025.jpg" alt="Orbit Academy" loading="lazy"></div>
-          <div class="gallery-item"><img src="Arafi%20Ramadhan%20Maulana%20-%20Sertifikat%20Magang%20-%20Data%20Analyst.jpg" alt="Sertifikat Magang eBdesk" loading="lazy"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">Karya Web &amp; Dashboard Interaktif</h2>
-          <p class="section-desc">Sistem informasi dan aplikasi web yang telah berhasil saya kembangkan.</p>
-        </div>
-        
-        <div class="grid-2">
-          <a href="https://dashboard-dpcpkstapos.vercel.app/auth/login" target="_blank" class="card">
-            <h3 class="card-title">Dashboard DPC PKS</h3>
-            <p class="card-desc">Sistem manajemen dan dashboard analitik untuk internal kepengurusan dengan kontrol keamanan tingkat lanjut.</p>
-            <div class="skill-list"><span class="badge">Live App</span></div>
-          </a>
-          <a href="https://tabulasipks.vercel.app/" target="_blank" class="card">
-            <h3 class="card-title">Tabulasi Pemilu PKS</h3>
-            <p class="card-desc">Sistem pemantauan suara real-time berbasis verifikasi foto C1 secara langsung dari TPS ke server cloud.</p>
-            <div class="skill-list"><span class="badge">Live App</span></div>
-          </a>
-        </div>
-
-        <div class="section-head" style="margin-top: 64px;">
-          <h2 class="section-title">Arsip Riset Akademik</h2>
-          <p class="section-desc">Jelajahi sumber kode proyek Machine Learning dan sistem yang saya rilis di GitHub.</p>
-        </div>
-        
-        <div class="grid-2">
-          <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Pengaruh%20Cumulative%20Explained%20Variance%20pada%20Incremental%20Principal%20Component%20Analysis%20terhadap%20Klasifikasi%20Na%C3%AFve%20Bayes%2016S%20rRNA%20Berbasis%20K-mer" target="_blank" class="card">
-            <div class="card-meta">Sep 2025–Apr 2026</div>
-            <h3 class="card-title">Klasifikasi Naïve Bayes 16S rRNA</h3>
-            <p class="card-desc">Pengaruh Cumulative Explained Variance pada Incremental Principal Component Analysis.</p>
-          </a>
-          <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Analisis%20Transisi%20Kategori%20Indeks%20Prestasi%20Mahasiswa%20Menggunakan%20Model%20Rantai%20Markov" target="_blank" class="card">
-            <div class="card-meta">Okt 2025–Des 2025</div>
-            <h3 class="card-title">Analisis Transisi Rantai Markov</h3>
-            <p class="card-desc">Proyek Pemodelan Stokastik untuk memprediksi probabilitas transisi prestasi mahasiswa.</p>
-          </a>
-          <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Optimasi%20Arsitektur%20Convolutional%20Neural%20Network%20Berbasis%20Mel%20Spectrogram%20untuk%20Klasifikasi%20Nada%20Musikal%20pada%20Dataset%20Terbatas" target="_blank" class="card">
-            <div class="card-meta">Okt 2025–Des 2025</div>
-            <h3 class="card-title">Klasifikasi Nada Musikal CNN</h3>
-            <p class="card-desc">Optimasi Arsitektur Convolutional Neural Network Berbasis Mel Spectrogram pada Dataset Terbatas.</p>
-          </a>
-          <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Penerapan%20Klasifikasi%20Random%20Forest%20pada%20Sistem%20Rekomendasi%20Produk%20Telekomunikasi%20Berbasis%20Preferensi%20Mahasiswa%20dengan%20Pendekatan%20K-Nearest%20Neighbors" target="_blank" class="card">
-            <div class="card-meta">Agu 2025–Des 2025</div>
-            <h3 class="card-title">Sistem Rekomendasi Random Forest</h3>
-            <p class="card-desc">Rekomendasi Produk Telekomunikasi Berbasis Preferensi dengan KNN dan RF.</p>
-          </a>
-          <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Repository%20Modul%20Praktikum%20Sains%20Data" target="_blank" class="card">
-            <div class="card-meta">Agu 2025–Des 2025</div>
-            <h3 class="card-title">Repository Modul MLOps</h3>
-            <p class="card-desc">Modul praktikum Machine Learning Operations untuk program studi Sains Data.</p>
-          </a>
-          <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Analisis%20Sebaran%20Sekolah%20di%20Bandar%20Lampung%20Menggunakan%20Algoritma%20DBSCAN" target="_blank" class="card">
-            <div class="card-meta">Mei 2025</div>
-            <h3 class="card-title">Analisis Sebaran Spasial DBSCAN</h3>
-            <p class="card-desc">Analisis sebaran sekolah di wilayah Bandar Lampung menggunakan algoritma DBSCAN.</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container" style="max-width: 600px;">
-        <div class="section-head">
-          <h2 class="section-title">Mari Berdiskusi!</h2>
-          <p class="section-desc">Kirim email ke <a href="mailto:arafiramadhan10@gmail.com" style="color: var(--text-main); font-weight: 500;">arafiramadhan10@gmail.com</a> atau isi formulir di bawah ini.</p>
-        </div>
-        
-        <form class="contact-form" id="contact-form">
-          <div class="form-group">
-            <label for="c-name">Nama Anda</label>
-            <input type="text" id="c-name" class="form-control" placeholder="Nama lengkap Anda" required>
-          </div>
-          <div class="form-group">
-            <label for="c-email">Alamat Email</label>
-            <input type="email" id="c-email" class="form-control" placeholder="Alamat email Anda" required>
-          </div>
-          <div class="form-group">
-            <label for="c-message">Pesan Anda</label>
-            <textarea id="c-message" class="form-control" placeholder="Jelaskan kebutuhan Anda secara singkat..." required></textarea>
-          </div>
-          <button class="btn btn-primary" style="margin-top: 8px;" type="submit" id="c-submitBtn">Kirim Pesan</button>
-          <div id="c-feedback" style="display: none; font-size: 13px; font-weight: 500; margin-top: 4px;"></div>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <p>© 2026 Arafi Ramadhan Maulana. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <div class="lightbox" id="lightbox">
-    <img id="lightbox-img" src="" alt="Preview">
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav-container">
+    <nav class="mobile-nav glass-nav">
+      <div class="mobile-nav-pill" id="mobile-pill"></div>
+      <a href="#home" class="active" title="Beranda"><i data-lucide="house"></i></a>
+      <a href="#about" title="Tentang"><i data-lucide="user"></i></a>
+      <a href="#skills" title="Keahlian"><i data-lucide="cpu"></i></a>
+      <a href="#experience" title="Riwayat"><i data-lucide="briefcase"></i></a>
+      <a href="#projects" title="Proyek"><i data-lucide="code-2"></i></a>
+      <a href="#contact" title="Kontak"><i data-lucide="mail"></i></a>
+    </nav>
   </div>
 
+  <!-- Main Content -->
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section id="home" class="hero-section">
+      <div class="hero-container">
+        <div class="hero-content">
+          <h1 class="hero-title" id="hero-title">Arafi Ramadhan Maulana</h1>
+          <div class="hero-tagline">Data Science Graduate at ITERA | Sales Data Analyst Intern at Telkomsel | Data Analyst at eBdesk Teknologi</div>
+          <p class="hero-subtitle">Lulusan Program Studi Sains Data Institut Teknologi Sumatera dengan pengalaman sebagai Asisten Praktikum pada mata kuliah teknis tingkat lanjut. Memiliki rekam jejak magang sebagai Data Analyst di PT eBdesk Teknologi serta pengalaman mengembangkan sistem manajemen data berbasis web di PT Telekomunikasi Selular. Kemampuan kepemimpinan terbukti melalui peran sebagai Kepala Departemen Eksternal di HMSD Adyatama.</p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn-primary">Lihat Proyek <i data-lucide="arrow-right"></i></a>
+            <a href="https://wa.me/6289515928647" target="_blank" class="btn-secondary">Hubungi Saya</a>
+          </div>
+          <div class="hero-socials">
+            <span class="hero-socials-label">Hubungkan:</span>
+            <a href="https://www.linkedin.com/in/arafiramadhanmaulana" target="_blank" class="social-btn" title="LinkedIn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/linkedin.svg" width="18" height="18" alt="LinkedIn"></a>
+            <a href="https://github.com/arafiramadhanmaulana" target="_blank" class="social-btn" title="GitHub"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/github.svg" width="18" height="18" alt="GitHub"></a>
+            <a href="mailto:arafiramadhan10@gmail.com" class="social-btn" title="Email"><i data-lucide="mail"></i></a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="visual-image-wrapper">
+            <img src="photo.jpeg" alt="" class="visual-image" width="400" height="400" fetchpriority="high">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section id="skills" class="skills-section">
+      <div class="section-header">
+        <p class="subtitle">Keahlian &amp; Teknologi</p>
+        <h2 class="title">Teknologi &amp; Tools Utama</h2>
+      </div>
+      <h3 class="skills-group-title">Bahasa Pemrograman</h3>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">Python</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/r/r-original.svg" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">R</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">JavaScript</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">PHP</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">HTML5</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">CSS3</span>
+        </div>
+      </div>
+
+      <h3 class="skills-group-title">Framework & Library</h3>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">React.js</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">FastAPI</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">Flask</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/streamlit/streamlit-original.svg" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">Streamlit</span>
+        </div>
+      </div>
+
+      <h3 class="skills-group-title">Database & Backend</h3>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">PostgreSQL</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original-wordmark.svg" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">MySQL</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">Supabase</span>
+        </div>
+      </div>
+
+      <h3 class="skills-group-title">Data & BI Tools</h3>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://img.icons8.com/color/48/google-looker.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">Looker Studio</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://img.icons8.com/color/48/tableau-software.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">Tableau</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://img.icons8.com/color/48/power-bi.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">Power BI</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://img.icons8.com/color/48/ms-excel.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">Excel</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://img.icons8.com/color/48/ms-word.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">Word</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://img.icons8.com/color/48/ms-powerpoint.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">PowerPoint</span>
+        </div>
+      </div>
+
+      <h3 class="skills-group-title">DevOps & Deployment</h3>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">Vercel</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">Docker</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://cdn.simpleicons.org/render/ffffff" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">Render</span>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/hadoop/hadoop-original.svg" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <span class="skill-name">Hadoop</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE TIMELINE ============ -->
+    <section id="experience" class="timeline-section">
+      <div class="section-header">
+        <p class="subtitle">Pengalaman &amp; Riwayat</p>
+        <h2 class="title">Perjalanan Profesional</h2>
+      </div>
+      <div class="timeline-grid">
+
+        <!-- Column 1: Work -->
+        <div>
+          <h2 class="timeline-column-title"><i data-lucide="briefcase"></i> Riwayat Pekerjaan</h2>
+          <div class="timeline-cards">
+            
+            <div class="timeline-card">
+              <span class="timeline-time">Apr 2026 - Saat ini</span>
+              <h3 class="timeline-role">Full-Stack Web Developer</h3>
+              <div class="timeline-company"><i data-lucide="globe"></i> Pekerja Lepas | Self-Employed</div>
+              <div class="timeline-desc">
+                <strong>Platform Tabulasi &amp; Monitoring Suara Pemilu Real-Time</strong><br>
+                Mengembangkan sistem terintegrasi (Full-Stack) untuk mengumpulkan, memverifikasi, dan memvisualisasikan data perolehan suara pemilihan legislatif secara real-time dari ratusan Tempat Pemungutan Suara (TPS). Sistem ini dirancang untuk meminimalkan manipulasi data, mempercepat rekapitulasi internal, serta menyediakan analitik data suara yang cepat dan aman bagi tim pemenangan.
+                <ul>
+                  <li><strong>Real-time Vote Tracking &amp; Verification:</strong> Membangun antarmuka input data suara tingkat TPS yang dilengkapi fitur unggah foto bukti fisik formulir (C1 Plano) langsung ke cloud storage untuk verifikasi administratif.</li>
+                  <li><strong>Security Protection:</strong> Menerapkan sistem firewall middleware kustom pada backend untuk menangani security headers (HSTS, CSP, X-Frame-Options, XSS) serta membuat database-persistent rate limiter berbasis alamat IP untuk mencegah serangan brute force login.</li>
+                  <li><strong>Role-Based Access Control (RBAC):</strong> Mengimplementasikan sistem autentikasi JWT (JSON Web Tokens) dengan pembatasan hak akses yang ketat berdasarkan peran pengguna (Administrator vs. Petugas Lapangan) dan cakupan wilayah geografis tertentu.</li>
+                  <li><strong>Interactive Analytics Dashboard:</strong> Menyajikan grafik visualisasi data perolehan suara caleg internal versus kompetitor secara dinamis untuk memudahkan pengambilan keputusan strategis.</li>
+                  <li><strong>Automated Excel Reporter:</strong> Merancang generator laporan Excel terformat secara otomatis (menggunakan styling libraries) untuk kebutuhan rekapitulasi data luring (offline auditing).</li>
+                </ul>
+                <br>
+                <strong>Platform Manajemen Organisasi &amp; Relawan Terintegrasi (ORP)</strong><br>
+                Mengembangkan platform web aman berkinerja tinggi yang dirancang untuk memusatkan operasi database, pelacakan relawan, dan logistik wilayah. Platform ini berfungsi sebagai satu-satunya sumber acuan data (single source of truth) untuk mengoordinasikan ribuan anggota dan program kerja operasional.
+                <ul>
+                  <li><strong>Arsitektur Database &amp; API:</strong> Merancang dan mengoptimalkan skema database relasional PostgreSQL pada Supabase, menulis skrip migrasi database, dan membangun REST API berbasis PHP yang aman.</li>
+                  <li><strong>Role-Based Access Control (RBAC):</strong> Membangun sistem manajemen pengguna yang aman dengan tingkat otentikasi bertingkat untuk melindungi data operasional yang sensitif.</li>
+                  <li><strong>Sistem Database Multi-Modul:</strong> Membangun 10 modul khusus untuk mengelola dan melacak data Relawan, Koordinator Wilayah, Pengurus Organisasi, dan data kinerja Kampanye.</li>
+                  <li><strong>Analisis &amp; Pelaporan:</strong> Mengintegrasikan dasbor real-time dengan Recharts untuk analisis data wilayah, serta membuat skrip ekspor data pada sisi klien untuk pembuatan laporan Excel otomatis.</li>
+                  <li><strong>Deployment &amp; Integrasi:</strong> Mengonfigurasi alur kerja build frontend di platform Vercel dengan integrasi API yang aman.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-card">
+              <span class="timeline-time">Jul 2025 - Agu 2025</span>
+              <h3 class="timeline-role">Sales Data Analytics Intern</h3>
+              <div class="timeline-company"><i data-lucide="building"></i> Telkomsel</div>
+              <div class="timeline-desc">
+                Telkomsel Smart Office (TSO) Jakarta - Lantai 10, Jl. Jendral Gatot Subroto Kav. 52, Jakarta Selatan<br><br>
+                <strong>Microsite e-Playbook IndiHome:</strong>
+                <ul>
+                  <li>Membangun sistem manajemen dan klasifikasi dokumen otomatis menggunakan skrip machine learning untuk mengekstrak teks dari PDF dan menghasilkan kata kunci konten.</li>
+                  <li>Mengembangkan aplikasi web full-stack menggunakan PHP dan MySQL, dilengkapi panel administrasi lengkap untuk manajemen pengguna dan fitur unggah dokumen yang aman.</li>
+                  <li>Mengoptimalkan aksesibilitas data dengan mengimplementasikan sistem pencarian dan filter dinamis menggunakan antarmuka responsif berbasis HTML, CSS, dan JavaScript.</li>
+                </ul>
+                <br>
+                <strong>Microsite Dashboard Penjualan Orbit Agent:</strong>
+                <ul>
+                  <li>Merancang dan menggunakan dashboard penjualan interaktif untuk memvisualisasikan metrik kinerja individu dan regional menggunakan HTML, CSS, dan JavaScript.</li>
+                  <li>Mengimplementasikan sistem autentikasi aman menggunakan kode referral untuk mengelola akses agen dan privasi data.</li>
+                  <li>Meningkatkan pengalaman pengguna dengan menambahkan filter rentang waktu, halaman detail transaksi penjualan, dan tautan terintegrasi ke materi promosi resmi.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-card">
+              <span class="timeline-time">Jul 2024 - Agu 2024</span>
+              <h3 class="timeline-role">Data Analyst Intern</h3>
+              <div class="timeline-company"><i data-lucide="building"></i> PT eBdesk Teknologi</div>
+              <div class="timeline-desc">
+                <ul>
+                  <li>Memproses dan memperbarui lebih dari 100 entri dengan mencocokkan hasil pencarian berita melalui kata kunci di Excel, mengoptimalkan kueri untuk meningkatkan akurasi data.</li>
+                  <li>Membantu membuat 5 visualisasi data di 4 kategori media (Online, Cetak, TV, dan Media Sosial) untuk meningkatkan kualitas presentasi staf senior.</li>
+                  <li>Membersihkan dan mengorganisir data dari 38 file provinsi yang berisi 200.000+ entri mengenai siswa (SD hingga SMA) untuk memastikan konsistensi data.</li>
+                  <li>Mengonfigurasi dan memasukkan 200+ entri data ke dalam platform Streamlit perusahaan.</li>
+                  <li>Memetakan 9 dataset JSON terkait informasi perkeretaapian ke dalam Excel, menstandarisasi format untuk keperluan analisis.</li>
+                  <li>Mendukung tim senior dengan meninjau 15+ presentasi PowerPoint klien setiap hari untuk memastikan akurasi dan kelengkapan data.</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Column 2: Organizations & Volunteer -->
+        <div>
+          <h2 class="timeline-column-title"><i data-lucide="users"></i> Akademik &amp; Organisasi</h2>
+          <div class="timeline-cards">
+
+            <div class="timeline-card">
+              <span class="timeline-time">2025 - Saat ini</span>
+              <h3 class="timeline-role">Asisten Praktikum</h3>
+              <div class="timeline-company"><i data-lucide="building"></i> Institut Teknologi Sumatera</div>
+              <div class="timeline-desc">
+                <ul>
+                  <li>Asisten Praktikum Analisis Deret Waktu (Jan 2026 - Jun 2026)</li>
+                  <li>Asisten Praktikum Visualisasi Data dan Informasi (Jan 2026 - Jun 2026)</li>
+                  <li>Asisten Praktikum Analisis Big Data (Jan 2026 - Jun 2026)</li>
+                  <li>Asisten Praktikum Pergudangan Data (Agu 2025 - Des 2025)</li>
+                  <li>Asisten Praktikum Komputasi Paralel (Agu 2025 - Des 2025)</li>
+                  <li>Asisten Praktikum Data Mining (Agu 2025 - Des 2025)</li>
+                  <li>Asisten Praktikum Kecerdasan Audio dan Visual (Agu 2025 - Des 2025)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-card">
+              <span class="timeline-time">Jan 2025 - Feb 2025</span>
+              <h3 class="timeline-role">Data Project Volunteer</h3>
+              <div class="timeline-company"><i data-lucide="heart"></i> Institut Teknologi Sumatera</div>
+              <div class="timeline-desc">
+                <ul>
+                  <li>Membangun dashboard kependudukan interaktif menggunakan Looker Studio untuk mendigitalisasi dan menyederhanakan pengelolaan data demografis bagi administrasi desa setempat.</li>
+                  <li>Mengolah kumpulan data demografis mentah menjadi wawasan visual yang dapat ditindaklanjuti untuk mendukung pengambilan keputusan berbasis data bagi perangkat desa.</li>
+                  <li>Menyampaikan presentasi teknis komprehensif dan laporan akhir kepada pemangku kepentingan, memastikan serah terima dan implementasi proyek berjalan dengan sukses.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-card">
+              <span class="timeline-time">Nov 2024 - Des 2024</span>
+              <h3 class="timeline-role">Sekretaris Jenderal</h3>
+              <div class="timeline-company"><i data-lucide="shield"></i> HMSD Adyatama</div>
+              <div class="timeline-desc">
+                <ul>
+                  <li>Mengoordinasikan aspek operasional dan strategis proses pemilihan mahasiswa internal.</li>
+                  <li>Mengawasi 5+ divisi, memastikan dokumentasi tepat waktu dan memimpin rapat koordinasi dengan lebih dari 20 anggota.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-card">
+              <span class="timeline-time">Feb 2024 - Des 2024</span>
+              <h3 class="timeline-role">Staf Divisi Pengabdian Masyarakat</h3>
+              <div class="timeline-company"><i data-lucide="users"></i> HMSD Adyatama</div>
+              <div class="timeline-desc">
+                <ul>
+                  <li><strong>Bendahara DATABASE (Datang Belajar dan Seru-seruan):</strong> Menyiapkan proposal anggaran dan mendokumentasikan 30+ transaksi keuangan dengan transparansi penuh.</li>
+                  <li><strong>Sekretaris SDM (Sains Data Mengabdi):</strong> Mengelola dokumentasi rapat dan menyusun proposal untuk kegiatan komunitas besar.</li>
+                  <li><strong>Relawan DAHAGA (Donor Darah Bahagia):</strong> Membantu proses donor darah untuk lebih dari 100 pendonor.</li>
+                  <li><strong>Ketua Pelaksana ROMANSA (Ramadhan Manisnya Sedekah):</strong> Merencanakan dan mengawasi 3+ kegiatan keagamaan dan sosial selama Ramadan, melibatkan 150+ peserta.</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Column 3: Education & Awards -->
+        <div>
+          <h2 class="timeline-column-title"><i data-lucide="graduation-cap"></i> Pendidikan &amp; Penghargaan</h2>
+          <div class="timeline-cards">
+            <div class="timeline-card">
+              <span class="timeline-time">Agu 2022 - Mei 2026</span>
+              <h3 class="timeline-role">S1 Sains Data</h3>
+              <div class="timeline-company"><i data-lucide="book"></i> Institut Teknologi Sumatera</div>
+              <div class="timeline-desc"><strong>IPK: 3.24 dari 4.00</strong><br>Fokus pada Machine Learning, Pemodelan Stokastik, Analisis Big Data, dan Rekayasa Perangkat Lunak.</div>
+            </div>
+            <div class="timeline-card">
+              <span class="timeline-time">2019 - 2022</span>
+              <h3 class="timeline-role">SMA IT Darul Qur'an</h3>
+              <div class="timeline-company"><i data-lucide="book-open"></i> Jurusan IPA</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ GALLERY ============ -->
+    <section id="gallery" class="gallery-section" style="padding: 100px 60px;">
+      <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+        <p class="subtitle" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--primary); font-weight: 700;">Bukti Pengalaman</p>
+        <h2 class="title" style="font-size: clamp(1.8rem, 3vw, 2.5rem);">Galeri &amp; Sertifikasi</h2>
+      </div>
+      <div class="gallery-grid">
+        <!-- Asisten Praktikum (Agu 2025 - Des 2025) -->
+        <div class="gallery-item" data-caption="Sertifikat Asisten Praktikum Data Mining (2025)">
+          <img src="Sertifikat%20Asisten%20Praktikum%20Data%20Mining.jpg" alt="" width="600" height="400" loading="lazy">
+          <div class="gallery-caption">Sertifikat Asisten Praktikum Data Mining (2025)</div>
+        </div>
+        <div class="gallery-item" data-caption="Sertifikat Asisten Praktikum Pergudangan Data (2025)">
+          <img src="Sertifikat%20Asisten%20Praktikum%20Pergudangan%20Data.jpg" alt="" width="600" height="400" loading="lazy">
+          <div class="gallery-caption">Sertifikat Asisten Praktikum Pergudangan Data (2025)</div>
+        </div>
+        <div class="gallery-item" data-caption="Sertifikat Asisten Praktikum Kecerdasan Audio dan Visual (2025)">
+          <img src="Sertifikat%20Asisten%20Praktikum%20Kecerdasan%20Audio%20dan%20Visual.jpg" alt="" width="600" height="400" loading="lazy">
+          <div class="gallery-caption">Sertifikat Asisten Praktikum Kecerdasan Audio dan Visual (2025)</div>
+        </div>
+        <div class="gallery-item" data-caption="Sertifikat Asisten Praktikum Komputasi Paralel (2025)">
+          <img src="Sertifikat%20Asisten%20Praktikum%20Komputasi%20Paralel.jpg" alt="" width="600" height="400" loading="lazy">
+          <div class="gallery-caption">Sertifikat Asisten Praktikum Komputasi Paralel (2025)</div>
+        </div>
+
+        <!-- Data Project Volunteer (Jan 2025 - Feb 2025) -->
+        <div class="gallery-item" data-caption="Data Project Volunteer: Penyerahan Dashboard Desa Kalisari (2025)">
+          <img src="Penyerahan%20Dashboard%20Desa%20Kalisari.jpg" alt="" width="600" height="400" loading="lazy">
+          <div class="gallery-caption">Data Project Volunteer: Penyerahan Dashboard Desa Kalisari (2025)</div>
+        </div>
+
+        <!-- Sekretaris Jenderal PEMIRA (Nov 2024 - Des 2024) -->
+        <div class="gallery-item" data-caption="Sertifikat Sekretaris Jenderal Pemilihan Umum Raya Himpunan Mahasiswa Sains Data Adyatama">
+          <img src="Sertifikat%20Sekretaris%20Jenderal%20Pemilihan%20Umum%20Raya%20Himpunan%20Mahasiswa%20Sains%20Data%20Adyatama.jpg" alt="" width="600" height="400" loading="lazy">
+          <div class="gallery-caption">Sertifikat Sekretaris Jenderal Pemilihan Umum Raya Himpunan Mahasiswa Sains Data Adyatama</div>
+        </div>
+
+        <!-- Sales Data Analyst Intern (Agu 2024 - Des 2024) -->
+        <div class="gallery-item" data-caption="Sales Data Analytics Intern: Presentasi Proyek IndiHome e-Playbook (2025)">
+          <img src="Presentasi%20Proyek%20IndiHome%20e-Playbook.jpg" alt="" width="600" height="400" loading="lazy">
+          <div class="gallery-caption">Sales Data Analytics Intern: Presentasi Proyek IndiHome e-Playbook (2025)</div>
+        </div>
+        <div class="gallery-item" data-caption="Sales Data Analytics Intern: Orbit Academy (2025)">
+          <img src="Orbit%20Academy%202025.jpg" alt="" width="600" height="400" loading="lazy">
+          <div class="gallery-caption">Sales Data Analytics Intern: Orbit Academy (2025)</div>
+        </div>
+        <div class="gallery-item" data-caption="Sales Data Analytics Intern: Surat Keterangan Magang (2025)">
+          <img src="Surat%20Keterangan%20Magang%20Telkomsel.jpg" alt="" width="600" height="400" loading="lazy">
+          <div class="gallery-caption">Sales Data Analytics Intern: Surat Keterangan Magang (2025)</div>
+        </div>
+
+        <!-- Staf Pengabdian Masyarakat (Feb 2024 - Des 2024) -->
+        <div class="gallery-item" data-caption="Sertifikat Sekretaris 1 Program Kerja Sains Data Mengabdi">
+          <img src="Sertifikat%20Sekretaris%201%20Sains%20Data%20Mengabdi.jpg" alt="" width="600" height="400" loading="lazy">
+          <div class="gallery-caption">Sertifikat Sekretaris 1 Program Kerja Sains Data Mengabdi</div>
+        </div>
+
+        <!-- Data Analyst Intern (Feb 2024 - Jun 2024) -->
+        <div class="gallery-item" data-caption="Data Analyst Intern: Sertifikat Magang (2024)">
+          <img src="Arafi%20Ramadhan%20Maulana%20-%20Sertifikat%20Magang%20-%20Data%20Analyst.jpg" alt="" width="600" height="400" loading="lazy">
+          <div class="gallery-caption">Data Analyst Intern: Sertifikat Magang (2024)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section id="projects" class="projects-section">
+      <div class="projects-header">
+        <h2 class="title">Karya Web &amp; Dashboard Interaktif</h2>
+        <p class="desc">Kumpulan sistem informasi dan aplikasi web yang telah berhasil saya kembangkan dan siap untuk Anda coba secara langsung (live preview).</p>
+      </div>
+
+      <div class="featured-grid">
+        <div class="browser-mockup">
+          <div class="browser-header">
+            <div class="browser-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+            <div class="browser-url">dashboard-dpcpkstapos.vercel.app</div>
+          </div>
+          <div class="browser-body">
+            <iframe src="https://dashboard-dpcpkstapos.vercel.app/auth/login" title="Dashboard DPC PKS"></iframe>
+          </div>
+          <a href="https://dashboard-dpcpkstapos.vercel.app/auth/login" target="_blank" class="browser-link-overlay" title="Buka Dashboard"></a>
+        </div>
+
+        <div class="browser-mockup">
+          <div class="browser-header">
+            <div class="browser-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
+            <div class="browser-url">tabulasipks.vercel.app</div>
+          </div>
+          <div class="browser-body">
+            <iframe src="https://tabulasipks.vercel.app/" title="Tabulasi PKS"></iframe>
+          </div>
+          <a href="https://tabulasipks.vercel.app/" target="_blank" class="browser-link-overlay" title="Buka Tabulasi PKS"></a>
+        </div>
+      </div>
+
+      <div class="projects-header" style="margin-top: 80px;">
+        <h2 class="title">Arsip Riset &amp; Proyek</h2>
+        <p class="desc">Jelajahi seluruh riset sains data saya—mulai dari pemodelan Machine Learning yang rumit hingga pengembangan sistem yang interaktif. <br><strong>💡 Silakan klik pada masing-masing kartu proyek di bawah ini untuk melihat detail kode sumbernya secara langsung di GitHub.</strong></p>
+      </div>
+      <div class="projects-grid">
+        <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Pengaruh%20Cumulative%20Explained%20Variance%20pada%20Incremental%20Principal%20Component%20Analysis%20terhadap%20Klasifikasi%20Na%C3%AFve%20Bayes%2016S%20rRNA%20Berbasis%20K-mer" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+          <h3 class="project-title">Pengaruh Cumulative Explained Variance pada Incremental Principal Component Analysis terhadap Klasifikasi Naïve Bayes 16S rRNA Berbasis k-mer</h3>
+          <div class="project-meta">Sep 2025–Apr 2026 | Institut Teknologi Sumatera</div>
+        </a>
+
+        <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Analisis%20Transisi%20Kategori%20Indeks%20Prestasi%20Mahasiswa%20Menggunakan%20Model%20Rantai%20Markov" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+          <h3 class="project-title">Analisis Transisi Kategori Indeks Prestasi Mahasiswa Menggunakan Model Rantai Markov — Proyek Pemodelan Stokastik</h3>
+          <div class="project-meta">Okt 2025–Des 2025 | Institut Teknologi Sumatera</div>
+        </a>
+
+        <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Optimasi%20Arsitektur%20Convolutional%20Neural%20Network%20Berbasis%20Mel%20Spectrogram%20untuk%20Klasifikasi%20Nada%20Musikal%20pada%20Dataset%20Terbatas" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+          <h3 class="project-title">Optimasi Arsitektur Convolutional Neural Network Berbasis Mel Spectrogram untuk Klasifikasi Nada Musikal pada Dataset Terbatas — Proyek Deep Learning</h3>
+          <div class="project-meta">Okt 2025–Des 2025 | Institut Teknologi Sumatera</div>
+        </a>
+
+        <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Penerapan%20Klasifikasi%20Random%20Forest%20pada%20Sistem%20Rekomendasi%20Produk%20Telekomunikasi%20Berbasis%20Preferensi%20Mahasiswa%20dengan%20Pendekatan%20K-Nearest%20Neighbors" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+          <h3 class="project-title">Penerapan Klasifikasi Random Forest pada Sistem Rekomendasi Produk Telekomunikasi Berbasis Preferensi Mahasiswa dengan Pendekatan K-Nearest Neighbors — Proyek Sains Data</h3>
+          <div class="project-meta">Agu 2025–Des 2025 | Institut Teknologi Sumatera</div>
+        </a>
+
+        <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Repository%20Modul%20Praktikum%20Sains%20Data" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+          <h3 class="project-title">Repository Modul Praktikum Sains Data — Proyek Machine Learning Operations</h3>
+          <div class="project-meta">Agu 2025–Des 2025 | Institut Teknologi Sumatera</div>
+        </a>
+
+        <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Analisis%20Sebaran%20Sekolah%20di%20Bandar%20Lampung%20Menggunakan%20Algoritma%20DBSCAN" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+          <h3 class="project-title">Analisis Sebaran Sekolah di Bandar Lampung Menggunakan Algoritma DBSCAN — Proyek Analisis Data Spasial</h3>
+          <div class="project-meta">Mei 2025 | Institut Teknologi Sumatera</div>
+        </a>
+
+        <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Membuat%20dan%20Menjalankan%20Kontainer%20Docker%20untuk%20Aplikasi%20Flask" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+          <h3 class="project-title">Membuat dan Menjalankan Kontainer Docker untuk Aplikasi Flask – Proyek Komputasi Awan</h3>
+          <div class="project-meta">Mei 2025 | Institut Teknologi Sumatera</div>
+        </a>
+
+        <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Pemanfaatan%20Ekosistem%20Hadoop%20untuk%20Analisis%20Data%20Ekspor%20Bahan%20Pangan%20di%20Indonesia" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+          <h3 class="project-title">Pemanfaatan Ekosistem Hadoop untuk Analisis Data Ekspor Bahan Pangan di Indonesia — Proyek Analisis Big Data</h3>
+          <div class="project-meta">Mei 2025 | Institut Teknologi Sumatera</div>
+        </a>
+
+        <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Penerapan%20Bat%20Algorithm%20untuk%20Klasifikasi%20Kanker%20Payudara" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+          <h3 class="project-title">Penerapan Bat Algorithm untuk Klasifikasi Kanker Payudara — Proyek Swarm Intelligence</h3>
+          <div class="project-meta">Mei 2025 | Institut Teknologi Sumatera</div>
+        </a>
+
+        <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Perancangan%20Data%20Warehouse%20untuk%20Analisis%20Preferensi%20Konsumen%20Kendaraan%20di%20Industri%20Otomotif" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+          <h3 class="project-title">Perancangan Data Warehouse untuk Analisis Preferensi Konsumen Kendaraan di Industri Otomotif — Proyek Pergudangan Data</h3>
+          <div class="project-meta">Mei 2025 | Institut Teknologi Sumatera</div>
+        </a>
+
+        <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Analisis%20Pergerakan%20Pengunjung%20dan%20Hubungan%20Antar%20Lokasi%20di%20Area%20Wisata" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+          <h3 class="project-title">Analisis Pergerakan Pengunjung dan Hubungan antar Lokasi di Area Wisata — Proyek Visualisasi Data dan Informasi</h3>
+          <div class="project-meta">Mei 2024 | Institut Teknologi Sumatera</div>
+        </a>
+
+        <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Klasifikasi%20Rumah%20di%20Daerah%20Lampung%20dengan%20Menggunakan%20KNN" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+          <h3 class="project-title">Klasifikasi Rumah di Daerah Lampung dengan Menggunakan KNN — Proyek Statistika Sains Data</h3>
+          <div class="project-meta">Mei 2024 | Institut Teknologi Sumatera</div>
+        </a>
+
+        <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Analisis%20Perilaku%20Penggunaan%20Laptop" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+          <h3 class="project-title">Analisis Perilaku Penggunaan Laptop — Proyek Logika dan Matematika Diskrit</h3>
+          <div class="project-meta">Des 2023 | Institut Teknologi Sumatera</div>
+        </a>
+
+        <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Learning%20Management%20System%20(E-Learning)" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+          <h3 class="project-title">Learning Management System (LMS) — Proyek Algoritma Pemrograman</h3>
+          <div class="project-meta">Des 2023 | Institut Teknologi Sumatera</div>
+        </a>
+
+        <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Penerapan%20Big%20Data%20Terhadap%20Transaksi%20Sales%20pada%20Bisnis%20Toko%20Online%20Berbasis%20di%20Inggris" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+          <h3 class="project-title">Penerapan Big Data terhadap Transaksi Sales Pada Bisnis Toko Online Berbasis di Inggris — Proyek Prinsip Ekonomi Mikro</h3>
+          <div class="project-meta">Nov 2023–Des 2023 | Institut Teknologi Sumatera</div>
+        </a>
+
+        <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Penerapan%20Directed%20Acyclic%20Graph%20Terhadap%20Jalur%20KRL%20Jabodetabek" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+          <h3 class="project-title">Penerapan Directed Acyclic Graph terhadap Jalur KRL Jabodetabek — Proyek Struktur Data</h3>
+          <div class="project-meta">Des 2023 | Institut Teknologi Sumatera</div>
+        </a>
+
+        <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Penerapan%20Metode%20Eksplorasi%20dan%20Transformasi%20Data%20dengan%20Pengaruh%20Suhu%20terhadap%20Tinggi%20Muka%20AIR%20(TMA)" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
+          <h3 class="project-title">Penerapan Metode Eksplorasi dan Transformasi Data dengan Pengaruh Suhu Terhadap Tinggi Muka Air (TMA) — Proyek Analisis Data Statistik</h3>
+          <div class="project-meta">Des 2023 | Institut Teknologi Sumatera</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox-overlay" onclick="this.classList.remove('active')">
+      <img id="lightbox-img" src="" alt="Preview">
+      <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="contact-section">
+      <div class="contact-grid">
+        <div class="contact-side">
+          <h1 class="contact-title">Wujudkan Proyek<br><span class="gradient-text">Impian Anda</span></h1>
+        </div>
+        <div class="contact-form-card">
+          <h2 class="contact-form-title">Mari Berdiskusi! 👋</h2>
+          <div class="contact-email-block">
+            <p class="contact-email-label">Kirim email ke</p>
+            <a href="mailto:arafiramadhan10@gmail.com" class="contact-email-link">arafiramadhan10@gmail.com</a>
+          </div>
+          <hr class="contact-separator">
+          <form id="contact-form">
+            <div class="form-grid-half">
+              <div class="form-group">
+                <label for="c-name">Nama Anda</label>
+                <input type="text" id="c-name" placeholder="Nama lengkap Anda" required>
+              </div>
+              <div class="form-group">
+                <label for="c-email">Alamat Email</label>
+                <input type="email" id="c-email" placeholder="Alamat email Anda" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="c-message">Gambarkan ide proyek Anda</label>
+              <textarea id="c-message" placeholder="Jelaskan secara singkat ide proyek atau pesan Anda..." required></textarea>
+            </div>
+            <div>
+              <p class="checkbox-title">Saya sedang mencari...</p>
+              <div class="checkbox-grid">
+                <div class="checkbox-wrap"><input type="checkbox" id="look-website"><label for="look-website">Website</label></div>
+                <div class="checkbox-wrap"><input type="checkbox" id="look-webapp"><label for="look-webapp">Aplikasi Web</label></div>
+                <div class="checkbox-wrap"><input type="checkbox" id="look-datascience"><label for="look-datascience">Sains Data</label></div>
+                <div class="checkbox-wrap"><input type="checkbox" id="look-ml"><label for="look-ml">AI / Model ML</label></div>
+                <div class="checkbox-wrap"><input type="checkbox" id="look-consult"><label for="look-consult">Konsultasi</label></div>
+                <div class="checkbox-wrap"><input type="checkbox" id="look-other"><label for="look-other">Lainnya</label></div>
+              </div>
+            </div>
+            <button class="submit-btn" type="submit" id="c-submitBtn">Kirim Pesan <span class="btn-plane"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></span></button>
+            <div id="c-feedback"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-columns">
+          <div>
+            <a href="#home" class="footer-brand">
+              <div class="footer-brand-logo"><img src="photo.jpeg" alt="" width="40" height="40" loading="lazy"></div>
+              <span class="footer-brand-name">ARAFI RAMADHAN</span>
+            </a>
+            <p class="footer-desc">Menggabungkan sains data tingkat lanjut, analisis machine learning yang mendalam, dan arsitektur web modern yang menawan untuk memberdayakan bisnis di seluruh dunia.</p>
+            <div class="footer-social-row">
+              <a href="https://www.linkedin.com/in/arafiramadhanmaulana" target="_blank" class="social-btn" title="LinkedIn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/linkedin.svg" width="18" height="18" alt="LinkedIn"></a>
+              <a href="https://github.com/arafiramadhanmaulana" target="_blank" class="social-btn" title="GitHub"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/github.svg" width="18" height="18" alt="GitHub"></a>
+              <a href="mailto:arafiramadhan10@gmail.com" class="social-btn" title="Email"><i data-lucide="mail"></i></a>
+            </div>
+          </div>
+          <div>
+            <h3 class="footer-col-title">Peta Situs</h3>
+            <ul class="footer-links">
+              <li><a href="#home">Beranda</a></li>
+              <li><a href="#about">Tentang</a></li>
+              <li><a href="#skills">Keahlian</a></li>
+              <li><a href="#projects">Proyek</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="footer-col-title">Hubungkan</h3>
+            <ul class="footer-links">
+              <li><a href="mailto:arafiramadhan10@gmail.com">Email</a></li>
+              <li><a href="https://www.linkedin.com/in/arafiramadhanmaulana" target="_blank">LinkedIn</a></li>
+              <li><a href="https://github.com/arafiramadhanmaulana" target="_blank">GitHub</a></li>
+              <li><a href="https://wa.me/6289515928647" target="_blank">WhatsApp</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-giant">
+          <span class="footer-giant-text">ARAFI</span>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 Arafi Ramadhan Maulana. Hak Cipta Dilindungi.</p>
+          <div class="footer-bottom-links">
+            <a href="#">Kebijakan Privasi</a>
+            <a href="#">Syarat &amp; Ketentuan</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- CDN Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <script src="script.js" defer></script>
+  <!-- Visitor Tracking -->
+  <script src="tracker.js" defer></script>
 </body>
 </html>
+
+

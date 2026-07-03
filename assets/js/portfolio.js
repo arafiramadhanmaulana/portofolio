@@ -1,16 +1,8 @@
-/* ============================================================
-   PORTFOLIO — Premium Interactive Script
-   GSAP 3.12 · ScrollTrigger · Lenis · Lucide · Canvas Particles
-   ============================================================ */
-
-// ── Global: Contact Form Handler (Web3Forms) ─────────────────
 async function handleContactSubmit(e) {
   if (e) e.preventDefault();
-
   const name    = document.getElementById('c-name')?.value.trim()    || '';
   const email   = document.getElementById('c-email')?.value.trim()   || '';
   const message = document.getElementById('c-message')?.value.trim() || '';
-
   const services = [];
   const checkboxes = [
     { id: 'look-website',     label: 'Website' },
@@ -24,10 +16,8 @@ async function handleContactSubmit(e) {
     const el = document.getElementById(id);
     if (el && el.checked) services.push(label);
   });
-
   const submitBtn = document.getElementById('c-submitBtn');
   const feedback  = document.getElementById('c-feedback');
-
   if (submitBtn) {
     submitBtn.disabled  = true;
     submitBtn.innerHTML = '<span class="spinner" style="display:inline-block; width:14px; height:14px; border:2px solid #fff; border-bottom-color:transparent; border-radius:50%; animation:spin 1s linear infinite; margin-right:8px;"></span> Mengirim...';
@@ -35,7 +25,6 @@ async function handleContactSubmit(e) {
   if (feedback) {
     feedback.style.display = 'none';
   }
-
   try {
     const response = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
@@ -52,9 +41,7 @@ async function handleContactSubmit(e) {
         message: message
       })
     });
-
     const result = await response.json();
-
     if (response.status === 200) {
       if (feedback) {
         feedback.style.display = 'block';
@@ -79,20 +66,8 @@ async function handleContactSubmit(e) {
     }
   }
 }
-
-
-// ── Main: DOMContentLoaded ──────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-
-  /* ----------------------------------------------------------
-     1 · Lucide Icons
-  ---------------------------------------------------------- */
   if (typeof lucide !== 'undefined') lucide.createIcons();
-
-
-  /* ----------------------------------------------------------
-     2 · Enhanced Particle Canvas Background (120 colored particles)
-  ---------------------------------------------------------- */
   const particleCanvas = document.getElementById('particle-canvas');
   if (particleCanvas) {
     const ctx = particleCanvas.getContext('2d');
@@ -103,12 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const particles = [];
     let mousePos = { x: -999, y: -999 };
     const COLORS = [
-      'rgba(129,140,248,',  // primary indigo
-      'rgba(34,211,238,',   // secondary cyan
-      'rgba(244,114,182,',  // accent pink
-      'rgba(255,255,255,',  // white
+      'rgba(129,140,248,',  
+      'rgba(34,211,238,',   
+      'rgba(244,114,182,',  
+      'rgba(255,255,255,',  
     ];
-
     function resizeCanvas() {
       w = particleCanvas.width  = window.innerWidth;
       h = particleCanvas.height = window.innerHeight;
@@ -119,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
       mousePos.x = e.clientX;
       mousePos.y = e.clientY;
     });
-
     class Particle {
       constructor() {
         this.x  = Math.random() * w;
@@ -130,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         this.vx = (Math.random() - 0.5) * 0.5;
         this.vy = (Math.random() - 0.5) * 0.5;
         this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
-        this.pulse = Math.random() * Math.PI * 2; // phase offset for pulsing
+        this.pulse = Math.random() * Math.PI * 2; 
       }
       update() {
         this.x += this.vx;
@@ -139,12 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (this.x > w)  this.x = 0;
         if (this.y < 0)  this.y = h;
         if (this.y > h)  this.y = 0;
-
-        // Pulse glow
         this.pulse += 0.02;
         this.o = this.baseO + Math.sin(this.pulse) * 0.1;
-
-        // Mouse repulsion
         const dx = this.x - mousePos.x;
         const dy = this.y - mousePos.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -153,8 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
           this.vx += (dx / dist) * force;
           this.vy += (dy / dist) * force;
         }
-
-        // Speed dampening
         this.vx *= 0.99;
         this.vy *= 0.99;
       }
@@ -163,14 +130,11 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
         ctx.fillStyle = this.color + Math.max(0, this.o).toFixed(2) + ')';
         ctx.fill();
-        // Glow
         ctx.shadowBlur = 6;
         ctx.shadowColor = this.color + '0.3)';
       }
     }
-
     for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
-
     function drawConnections() {
       ctx.shadowBlur = 0;
       for (let i = 0; i < particles.length; i++) {
@@ -190,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     }
-
     function animateParticles() {
       ctx.clearRect(0, 0, w, h);
       particles.forEach(p => { p.update(); p.draw(); });
@@ -199,34 +162,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     animateParticles();
   }
-
-
-  /* ----------------------------------------------------------
-     3 · Custom Cursor
-  ---------------------------------------------------------- */
   const cursor         = document.getElementById('cursor');
   const cursorFollower = document.getElementById('cursor-follower');
-
   if (cursor && cursorFollower) {
     let mouseX = 0, mouseY = 0;
     let followerX = 0, followerY = 0;
-
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
       cursor.style.left = `${mouseX}px`;
       cursor.style.top  = `${mouseY}px`;
     });
-
-    // Follower lerp via gsap ticker
     gsap.ticker.add(() => {
       followerX += (mouseX - followerX) * 0.12;
       followerY += (mouseY - followerY) * 0.12;
       cursorFollower.style.left = `${followerX}px`;
       cursorFollower.style.top  = `${followerY}px`;
     });
-
-    // Hover interactions
     const hoverTargets = document.querySelectorAll(
       'a, button, input, textarea, .skill-card, .project-card, .timeline-card'
     );
@@ -235,31 +187,21 @@ document.addEventListener('DOMContentLoaded', () => {
       el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
     });
   }
-
-
-  /* ----------------------------------------------------------
-     4 · Preloader
-  ---------------------------------------------------------- */
   const preloader        = document.getElementById('preloader');
   const preloaderBar     = document.getElementById('preloader-bar');
   const preloaderPercent = document.getElementById('preloader-percent');
-
   if (preloader) {
     let progress = 0;
-
     const loadInterval = setInterval(() => {
-      progress += Math.floor(Math.random() * 7) + 6;   // 6‑12
+      progress += Math.floor(Math.random() * 7) + 6;   
       if (progress > 100) progress = 100;
-
       if (preloaderBar)     preloaderBar.style.width    = `${progress}%`;
       if (preloaderPercent) preloaderPercent.textContent = `${progress}%`;
-
       if (progress >= 100) {
         clearInterval(loadInterval);
         exitPreloader();
       }
     }, 70);
-
     function exitPreloader() {
       const tl = gsap.timeline({
         onComplete: () => {
@@ -268,7 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
           ScrollTrigger.refresh();
         }
       });
-
       tl.to('.preloader-content', {
         opacity: 0,
         y: -30,
@@ -284,40 +225,26 @@ document.addEventListener('DOMContentLoaded', () => {
         xPercent: 100,
         duration: 1.1,
         ease: 'power4.inOut',
-      }, '<');                                            // same start
+      }, '<');                                            
     }
   } else {
-    // No preloader — fire hero immediately
     triggerHeroEntrance();
   }
-
-
-  /* ----------------------------------------------------------
-     5 · Native Smooth Scroll
-  ---------------------------------------------------------- */
   document.querySelectorAll("a[href^='#']").forEach(anchor => {
     anchor.addEventListener('click', (e) => {
       e.preventDefault();
       const target = document.querySelector(anchor.getAttribute('href'));
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
-        
-        // Close mobile nav if open
         const mobileNav = document.querySelector('.mobile-nav');
         if (mobileNav) mobileNav.classList.remove('active');
       }
     });
   });
-
-
-  /* ----------------------------------------------------------
-     6 · Navigation Pill Tracker
-  ---------------------------------------------------------- */
   const desktopLinks = document.querySelectorAll('.desktop-nav a');
   const mobileLinks  = document.querySelectorAll('.mobile-nav a');
   const navPill      = document.getElementById('nav-pill');
   const mobilePill   = document.getElementById('mobile-pill');
-
   function movePill(pill, link) {
     if (!pill || !link) return;
     const rect   = link.getBoundingClientRect();
@@ -329,7 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ease:     'power2.out',
     });
   }
-
   function setActiveNav(id) {
     desktopLinks.forEach(l => {
       l.classList.toggle('active', l.getAttribute('href') === `#${id}`);
@@ -340,8 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (l.classList.contains('active')) movePill(mobilePill, l);
     });
   }
-
-  // IntersectionObserver for active section
   const sections = document.querySelectorAll('section[id]');
   if (sections.length) {
     const observer = new IntersectionObserver((entries) => {
@@ -349,37 +273,25 @@ document.addEventListener('DOMContentLoaded', () => {
         if (entry.isIntersecting) setActiveNav(entry.target.id);
       });
     }, { rootMargin: '-45% 0px -45% 0px' });
-
     sections.forEach(sec => observer.observe(sec));
   }
-
-  // Initial pill position
   const initialActive = document.querySelector('.desktop-nav a.active');
   if (initialActive) movePill(navPill, initialActive);
-
   window.addEventListener('resize', () => {
     const active = document.querySelector('.desktop-nav a.active');
     if (active) movePill(navPill, active);
     const mActive = document.querySelector('.mobile-nav a.active');
     if (mActive) movePill(mobilePill, mActive);
   });
-
-
-  /* ----------------------------------------------------------
-     7 · Hero Entrance Animation
-  ---------------------------------------------------------- */
   function triggerHeroEntrance() {
     const heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
-      // Manual text splitting — preserve <br> and child elements
       const children = Array.from(heroTitle.childNodes);
       heroTitle.innerHTML = '';
-
       children.forEach(node => {
         if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'BR') {
           heroTitle.appendChild(document.createElement('br'));
         } else if (node.nodeType === Node.ELEMENT_NODE) {
-          // Wrap the inner text of child elements (e.g. <span class="accent">)
           const wrapper = node.cloneNode(false);
           const text = node.textContent;
           text.split('').forEach(ch => {
@@ -401,8 +313,6 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         }
       });
-
-      // Animate characters
       gsap.from('.hero-title .char', {
         opacity:  0,
         y:        '100%',
@@ -413,15 +323,11 @@ document.addEventListener('DOMContentLoaded', () => {
         clearProps: 'all',
       });
     }
-
-    // Supporting elements
     const tl = gsap.timeline({ delay: 0.4 });
     tl.from('.hero-tagline', { opacity: 0, y: 30, duration: 0.6, clearProps: 'all' })
       .from('.hero-subtitle', { opacity: 0, y: 30, duration: 0.6, clearProps: 'all' }, '-=0.3')
       .from('.hero-actions',  { opacity: 0, y: 30, duration: 0.6, clearProps: 'all' }, '-=0.3')
       .from('.hero-socials',  { opacity: 0, y: 30, duration: 0.6, clearProps: 'all' }, '-=0.3');
-
-    // Hero visual
     gsap.from('.hero-visual', {
       scale:    0.8,
       opacity:  0,
@@ -430,8 +336,6 @@ document.addEventListener('DOMContentLoaded', () => {
       delay:    0.6,
       clearProps: 'all',
     });
-
-    // Header
     gsap.from('header', {
       opacity:  0,
       y:        -20,
@@ -440,20 +344,12 @@ document.addEventListener('DOMContentLoaded', () => {
       clearProps: 'all',
     });
   }
-
-
-  /* ----------------------------------------------------------
-     8 · ScrollTrigger Reveals
-  ---------------------------------------------------------- */
-
-  // — Flow sections —
   gsap.utils.toArray('.flow-header').forEach(el => {
     gsap.from(el, {
       y: 30, opacity: 0, duration: 0.8, ease: 'power3.out', clearProps: 'all',
       scrollTrigger: { trigger: el, start: 'top 85%' },
     });
   });
-
   gsap.utils.toArray('.flow-content').forEach(container => {
     const kids = container.children;
     if (kids.length) {
@@ -463,24 +359,19 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
-
   gsap.utils.toArray('.flow-perk-card, .value-item, .stat-item-flow').forEach((el, i) => {
     gsap.from(el, {
       y: 30, opacity: 0, duration: 0.6, delay: i * 0.06, ease: 'power2.out', clearProps: 'all',
       scrollTrigger: { trigger: el, start: 'top 88%' },
     });
   });
-
-  // — Stat counter animation —
   gsap.utils.toArray('.stat-num-flow').forEach(el => {
     const raw    = el.getAttribute('data-target') || el.textContent;
-    const suffix = raw.replace(/[\d.]/g, '');                    // e.g. "+"
+    const suffix = raw.replace(/[\d.]/g, '');                    
     const target = parseFloat(raw);
     const isDecimal = raw.includes('.');
     const decimals  = isDecimal ? (raw.split('.')[1] || '').replace(/\D/g, '').length : 0;
-
     const obj = { val: 0 };
-
     ScrollTrigger.create({
       trigger: el,
       start:   'top 85%',
@@ -500,8 +391,6 @@ document.addEventListener('DOMContentLoaded', () => {
       },
     });
   });
-
-  // — Skills grid —
   gsap.utils.toArray('.skill-card').forEach((card, i) => {
     gsap.from(card, {
       opacity: 0, y: 20, scale: 0.9, duration: 0.5,
@@ -509,8 +398,6 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollTrigger: { trigger: card, start: 'top 88%' },
     });
   });
-
-  // — Timeline cards —
   gsap.utils.toArray('.timeline-card').forEach((card, i) => {
     gsap.from(card, {
       opacity: 0,
@@ -522,8 +409,6 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollTrigger: { trigger: card, start: 'top 85%' },
     });
   });
-
-  // — Project cards —
   gsap.utils.toArray('.project-card').forEach((card, i) => {
     gsap.from(card, {
       opacity: 0, y: 50, scale: 0.95, duration: 0.7,
@@ -531,8 +416,6 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollTrigger: { trigger: card, start: 'top 88%' },
     });
   });
-
-  // — Award cards —
   gsap.utils.toArray('.award-card').forEach((card, i) => {
     gsap.from(card, {
       opacity: 0, y: 30, duration: 0.6,
@@ -540,8 +423,6 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollTrigger: { trigger: card, start: 'top 88%' },
     });
   });
-
-  // — Contact section —
   const contactTitle = document.querySelector('.contact-title');
   if (contactTitle) {
     gsap.from(contactTitle, {
@@ -549,7 +430,6 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollTrigger: { trigger: contactTitle, start: 'top 85%' },
     });
   }
-
   const contactForm = document.querySelector('.contact-form-card');
   if (contactForm) {
     gsap.from(contactForm, {
@@ -557,8 +437,6 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollTrigger: { trigger: contactForm, start: 'top 85%' },
     });
   }
-
-  // — Footer giant text parallax —
   const footerText = document.querySelector('.footer-giant-text');
   if (footerText) {
     gsap.to(footerText, {
@@ -572,11 +450,6 @@ document.addEventListener('DOMContentLoaded', () => {
       },
     });
   }
-
-
-  /* ----------------------------------------------------------
-     9 · Magnetic Button Effect
-  ---------------------------------------------------------- */
   document.querySelectorAll('.btn-primary').forEach(btn => {
     btn.addEventListener('mousemove', (e) => {
       const rect = btn.getBoundingClientRect();
@@ -588,31 +461,16 @@ document.addEventListener('DOMContentLoaded', () => {
       gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1,0.4)' });
     });
   });
-
-
-  /* ----------------------------------------------------------
-     10 · Contact Form Binding
-  ---------------------------------------------------------- */
   const contactFormEl = document.getElementById('contact-form');
   if (contactFormEl) {
     contactFormEl.addEventListener('submit', handleContactSubmit);
   }
-
-
-  /* ----------------------------------------------------------
-     11 · Marquee Continuous Scroll
-  ---------------------------------------------------------- */
   document.querySelectorAll('.marquee-track').forEach(track => {
     const kids = Array.from(track.children);
     if (kids.length && track.scrollWidth <= window.innerWidth * 2) {
       kids.forEach(child => track.appendChild(child.cloneNode(true)));
     }
   });
-
-
-  /* ----------------------------------------------------------
-     12 · Mobile Nav Toggle (bonus utility)
-  ---------------------------------------------------------- */
   const menuToggle = document.getElementById('menu-toggle');
   const mobileNavEl = document.querySelector('.mobile-nav');
   if (menuToggle && mobileNavEl) {
@@ -621,11 +479,6 @@ document.addEventListener('DOMContentLoaded', () => {
       menuToggle.classList.toggle('active');
     });
   }
-
-
-  /* ----------------------------------------------------------
-     13 · Scroll Progress Bar
-  ---------------------------------------------------------- */
   const scrollProgress = document.getElementById('scroll-progress');
   if (scrollProgress) {
     gsap.to(scrollProgress, {
@@ -639,11 +492,6 @@ document.addEventListener('DOMContentLoaded', () => {
       },
     });
   }
-
-
-  /* ----------------------------------------------------------
-     14 · Section Title Reveal Animation
-  ---------------------------------------------------------- */
   document.querySelectorAll('.section-header .title, .flow-title').forEach(title => {
     gsap.from(title, {
       opacity: 0,
@@ -657,11 +505,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-
-
-  /* ----------------------------------------------------------
-     15 · Hero Image Parallax Tilt on Mouse
-  ---------------------------------------------------------- */
   const heroVisual = document.querySelector('.hero-visual');
   const heroWrapper = document.querySelector('.visual-image-wrapper');
   if (heroVisual && heroWrapper) {
@@ -688,11 +531,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-
-
-  /* ----------------------------------------------------------
-     16 · Typewriter Effect on Hero Tagline
-  ---------------------------------------------------------- */
   const taglineEl = document.querySelector('.hero-tagline');
   if (taglineEl) {
     const fullText = taglineEl.textContent;
@@ -700,26 +538,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursorSpan = document.createElement('span');
     cursorSpan.className = 'typewriter-cursor';
     taglineEl.appendChild(cursorSpan);
-
     function typeWriter(text, i) {
       if (i < text.length) {
         taglineEl.insertBefore(document.createTextNode(text.charAt(i)), cursorSpan);
         setTimeout(() => typeWriter(text, i + 1), 25);
       } else {
-        // Remove cursor after a delay
         setTimeout(() => cursorSpan.remove(), 2000);
       }
     }
-
-    // Will be called by triggerHeroEntrance, but we delay it
     const originalTrigger = window._heroTypewrite;
     window._heroTypewrite = () => typeWriter(fullText, 0);
   }
-
-
-  /* ----------------------------------------------------------
-     17 · 3D Hover on Project Cards
-  ---------------------------------------------------------- */
   document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
@@ -742,11 +571,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
-
-
-  /* ----------------------------------------------------------
-     18 · Floating Cards Parallax on Scroll
-  ---------------------------------------------------------- */
   document.querySelectorAll('.floating-overlay-card').forEach((card, i) => {
     gsap.to(card, {
       y: i % 2 === 0 ? -40 : 40,
@@ -758,14 +582,8 @@ document.addEventListener('DOMContentLoaded', () => {
       },
     });
   });
-
-
-  /* ----------------------------------------------------------
-     19 · Skill Cards Wave Animation
-  ---------------------------------------------------------- */
   gsap.utils.toArray('.skill-card').forEach((card, i) => {
     card.addEventListener('mouseenter', () => {
-      // Ripple: animate adjacent cards
       const allCards = gsap.utils.toArray('.skill-card');
       allCards.forEach((otherCard, j) => {
         const distance = Math.abs(i - j);
@@ -785,11 +603,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
-
-
-  /* ----------------------------------------------------------
-     20 · Preloader Safety Timeout (max 3 seconds)
-  ---------------------------------------------------------- */
   setTimeout(() => {
     const preloaderEl = document.getElementById('preloader');
     if (preloaderEl && preloaderEl.style.display !== 'none') {
@@ -799,19 +612,9 @@ document.addEventListener('DOMContentLoaded', () => {
       ScrollTrigger.refresh();
     }
   }, 3000);
-
-
-  /* ----------------------------------------------------------
-     21 · Start Typewriter after Hero Entrance
-  ---------------------------------------------------------- */
   setTimeout(() => {
     if (window._heroTypewrite) window._heroTypewrite();
   }, 2500);
-
-
-  /* ----------------------------------------------------------
-     22 · Header Hide on Scroll Down, Show on Scroll Up
-  ---------------------------------------------------------- */
   let lastScrollY = 0;
   const headerEl = document.querySelector('header');
   if (headerEl) {
@@ -826,15 +629,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     window.addEventListener('scroll', onScroll, { passive: true });
   }
-
-
-  /* ----------------------------------------------------------
-     23 · Gallery Lightbox
-  ---------------------------------------------------------- */
   const lightboxOverlay = document.getElementById('lightbox-overlay');
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxCaption = document.getElementById('lightbox-caption');
-
   document.querySelectorAll('.gallery-item').forEach(item => {
     item.addEventListener('click', () => {
       const img = item.querySelector('img');
@@ -849,11 +646,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && lightboxOverlay) {
       lightboxOverlay.classList.remove('active');
     }
   });
-
 });

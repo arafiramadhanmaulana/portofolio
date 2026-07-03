@@ -1,48 +1,41 @@
-/* ═══════════════════════════════════════════════════════════════
-   ARAFI RAMADHAN MAULANA — Portfolio Design System
-   Premium Dark Theme · v1.0
-   ═══════════════════════════════════════════════════════════════ */
 
-/* ─── Google Fonts ─────────────────────────────────────────── */
+
+
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
-/* ═══════════════════════════════════════════════════════════════
-   §1  DESIGN TOKENS
-   ═══════════════════════════════════════════════════════════════ */
+
 :root {
-  /* ── Typography ────────────────────────────────────────────── */
+  
   --font-display: 'Outfit', sans-serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
 
-  /* ── Backgrounds ───────────────────────────────────────────── */
+  
   --bg-dark: #0a0a0f;
   --bg-card: #141420;
   --bg-glass: rgba(20, 20, 32, 0.8);
 
-  /* ── Text ───────────────────────────────────────────────────── */
+  
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
 
-  /* ── Accent Palette ────────────────────────────────────────── */
+  
   --primary: #818cf8;
   --primary-rgb: 129, 140, 248;
   --secondary: #22d3ee;
   --secondary-rgb: 34, 211, 238;
   --accent: #f472b6;
 
-  /* ── Borders ───────────────────────────────────────────────── */
+  
   --border-light: rgba(255, 255, 255, 0.06);
   --border-active: rgba(129, 140, 248, 0.4);
 
-  /* ── Easing ────────────────────────────────────────────────── */
+  
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   §2  GLOBAL RESET & BASE
-   ═══════════════════════════════════════════════════════════════ */
+
 *,
 *::before,
 *::after {
@@ -98,7 +91,7 @@ button {
   font-family: var(--font-body);
 }
 
-/* ─── Custom Scrollbar ─────────────────────────────────────── */
+
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -116,15 +109,13 @@ button {
   background: rgba(255, 255, 255, 0.14);
 }
 
-/* ─── Selection ────────────────────────────────────────────── */
+
 ::selection {
   background: rgba(var(--primary-rgb), 0.3);
   color: var(--text-primary);
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   §3  CUSTOM CURSOR
-   ═══════════════════════════════════════════════════════════════ */
+
 .custom-cursor {
   position: fixed;
   width: 8px;
@@ -168,9 +159,7 @@ body.cursor-hover .custom-cursor-follower {
   background: rgba(var(--primary-rgb), 0.06);
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   §4  PARTICLE CANVAS
-   ═══════════════════════════════════════════════════════════════ */
+
 #particle-canvas {
   position: fixed;
   top: 0;
@@ -181,9 +170,7 @@ body.cursor-hover .custom-cursor-follower {
   pointer-events: none;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   §5  PRELOADER
-   ═══════════════════════════════════════════════════════════════ */
+
 .preloader {
   position: fixed;
   top: 0;
@@ -261,9 +248,7 @@ body.cursor-hover .custom-cursor-follower {
   letter-spacing: 0.1em;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   §6  NAVIGATION
-   ═══════════════════════════════════════════════════════════════ */
+
 header {
   position: fixed;
   top: 0;
@@ -314,7 +299,7 @@ header {
   color: var(--text-primary);
 }
 
-/* ─── Desktop Navigation ──────────────────────────────────── */
+
 .desktop-nav {
   display: flex;
   gap: 4px;
@@ -363,7 +348,7 @@ header {
               width 0.4s var(--ease-out-expo);
 }
 
-/* ─── Header CTA Button ──────────────────────────────────── */
+
 .header-btn {
   padding: 10px 24px;
   background: var(--primary);
@@ -382,7 +367,7 @@ header {
   box-shadow: 0 8px 24px rgba(var(--primary-rgb), 0.3);
 }
 
-/* ─── Mobile Navigation ───────────────────────────────────── */
+
 .mobile-nav-container {
   position: fixed;
   bottom: 20px;
@@ -419,9 +404,7 @@ header {
   color: var(--text-primary);
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   §7  HERO SECTION
-   ═══════════════════════════════════════════════════════════════ */
+
 .hero-section {
   min-height: 100vh;
   display: flex;
@@ -479,7 +462,7 @@ header {
   max-width: 550px;
 }
 
-/* ─── Hero Buttons ─────────────────────────────────────────── */
+
 .hero-actions {
   display: flex;
   gap: 16px;
@@ -547,7 +530,7 @@ header {
   transform: translateY(-2px);
 }
 
-/* ─── Hero Socials ─────────────────────────────────────────── */
+
 .hero-socials-label {
   font-size: 12px;
   font-weight: 700;
@@ -588,7 +571,7 @@ header {
   filter: brightness(0) invert(1);
 }
 
-/* ─── Hero Visual ──────────────────────────────────────────── */
+
 .hero-visual {
   position: relative;
   display: flex;
@@ -684,9 +667,7 @@ header {
   margin-top: 8px;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   §8  KEYWORDS HIGHLIGHT
-   ═══════════════════════════════════════════════════════════════ */
+
 .keywords-section {
   padding: 40px 60px;
   border-top: 1px solid var(--border-light);
@@ -724,9 +705,7 @@ header {
   transform: translateY(-2px);
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   §9  ABOUT FLOW SECTIONS
-   ═══════════════════════════════════════════════════════════════ */
+
 .about-flow-container {
   position: relative;
 }
@@ -784,7 +763,7 @@ header {
   color: var(--text-muted);
 }
 
-/* ─── Flow Perk Cards ──────────────────────────────────────── */
+
 .flow-grid-perks {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -819,7 +798,7 @@ header {
   color: var(--text-secondary);
 }
 
-/* ─── Values Grid ──────────────────────────────────────────── */
+
 .values-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -858,7 +837,7 @@ header {
   line-height: 1.6;
 }
 
-/* ─── Stats Grid ───────────────────────────────────────────── */
+
 .stats-grid-flow {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -889,9 +868,7 @@ header {
   margin-top: 4px;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   §10  SKILLS SECTION
-   ═══════════════════════════════════════════════════════════════ */
+
 .skills-section {
   padding: 100px 60px;
 }
@@ -976,9 +953,7 @@ header {
   color: var(--text-secondary);
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   §11  TIMELINE / EXPERIENCE
-   ═══════════════════════════════════════════════════════════════ */
+
 .timeline-section {
   padding: 100px 60px;
 }
@@ -1090,9 +1065,7 @@ header {
   margin-top: 3px;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   §12  PROJECTS SECTION
-   ═══════════════════════════════════════════════════════════════ */
+
 .projects-section {
   padding: 100px 60px;
 }
@@ -1121,7 +1094,7 @@ header {
   gap: 24px;
 }
 
-/* ─── Browser Mockup (Featured Projects) ───────────────────── */
+
 .featured-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1290,9 +1263,7 @@ header {
   height: 12px;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   §13  AWARDS & GALLERY SECTION
-   ═══════════════════════════════════════════════════════════════ */
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1354,7 +1325,7 @@ header {
   transform: translateY(0);
 }
 
-/* Lightbox Modal */
+
 .lightbox-overlay {
   position: fixed;
   inset: 0;
@@ -1465,9 +1436,7 @@ header {
   margin-top: 8px;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   §14  CONTACT SECTION
-   ═══════════════════════════════════════════════════════════════ */
+
 .contact-section {
   padding: 100px 60px;
   position: relative;
@@ -1509,7 +1478,7 @@ header {
   }
 }
 
-/* ─── Contact Form Card ────────────────────────────────────── */
+
 .contact-form-card {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
@@ -1553,7 +1522,7 @@ header {
   margin: 20px 0;
 }
 
-/* ─── Form Controls ────────────────────────────────────────── */
+
 .form-group {
   margin-bottom: 16px;
 }
@@ -1603,7 +1572,7 @@ header {
   gap: 16px;
 }
 
-/* ─── Checkbox Group ───────────────────────────────────────── */
+
 .checkbox-title {
   font-size: 12px;
   font-weight: 600;
@@ -1719,7 +1688,7 @@ header {
   box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.2);
 }
 
-/* ─── Feedback Message ─────────────────────────────────────── */
+
 #c-feedback {
   font-size: 12px;
   font-weight: 600;
@@ -1733,9 +1702,7 @@ header {
   text-align: center;
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   §15  FOOTER
-   ═══════════════════════════════════════════════════════════════ */
+
 footer {
   padding: 0 60px 40px;
   margin-top: 60px;
@@ -1756,7 +1723,7 @@ footer {
   margin-bottom: 60px;
 }
 
-/* ─── Footer Brand ─────────────────────────────────────────── */
+
 .footer-brand {
   display: flex;
   align-items: center;
@@ -1799,7 +1766,7 @@ footer {
   margin-top: 20px;
 }
 
-/* ─── Footer Columns ───────────────────────────────────────── */
+
 .footer-col-title {
   font-size: 13px;
   font-weight: 800;
@@ -1830,7 +1797,7 @@ footer {
   transform: translateX(4px);
 }
 
-/* ─── Footer Giant Text ────────────────────────────────────── */
+
 .footer-giant {
   text-align: center;
   margin-bottom: 40px;
@@ -1847,7 +1814,7 @@ footer {
   line-height: 1;
 }
 
-/* ─── Footer Bottom ────────────────────────────────────────── */
+
 .footer-bottom {
   display: flex;
   justify-content: space-between;
@@ -1872,11 +1839,9 @@ footer {
   color: var(--text-secondary);
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   §16  RESPONSIVE BREAKPOINTS
-   ═══════════════════════════════════════════════════════════════ */
 
-/* ─── 1024px and below ─────────────────────────────────────── */
+
+
 @media (max-width: 1024px) {
   .hero-container {
     grid-template-columns: 1fr;
@@ -1925,7 +1890,7 @@ footer {
   }
 }
 
-/* ─── 768px and below ──────────────────────────────────────── */
+
 @media (max-width: 768px) {
   .desktop-nav,
   .header-btn {
@@ -2038,7 +2003,7 @@ footer {
   }
 }
 
-/* ─── 480px and below ──────────────────────────────────────── */
+
 @media (max-width: 480px) {
   .hero-title {
     font-size: clamp(1.8rem, 8vw, 2.4rem);
@@ -2130,9 +2095,7 @@ footer {
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   §17  UTILITY ANIMATIONS
-   ═══════════════════════════════════════════════════════════════ */
+
 @keyframes pulse-glow {
   0%, 100% {
     box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.4);
@@ -2151,7 +2114,7 @@ footer {
   }
 }
 
-/* ─── Gradient text utility ────────────────────────────────── */
+
 .gradient-text {
   background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
   background-size: 200% 200%;
@@ -2161,7 +2124,7 @@ footer {
   animation: gradient-flow 3s ease infinite;
 }
 
-/* ─── Reveal animation base (for GSAP / scroll triggers) ──── */
+
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -2174,7 +2137,7 @@ footer {
   transform: translateY(0);
 }
 
-/* ─── Stagger utility ──────────────────────────────────────── */
+
 .stagger-1 { transition-delay: 0.05s; }
 .stagger-2 { transition-delay: 0.1s; }
 .stagger-3 { transition-delay: 0.15s; }
@@ -2184,7 +2147,7 @@ footer {
 .stagger-7 { transition-delay: 0.35s; }
 .stagger-8 { transition-delay: 0.4s; }
 
-/* ─── Hide cursor on touch devices ─────────────────────────── */
+
 @media (hover: none) and (pointer: coarse) {
   .custom-cursor,
   .custom-cursor-follower {
@@ -2196,11 +2159,9 @@ footer {
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════
-   §EXTRA  ENHANCED BRUTAL ANIMATIONS
-   ═══════════════════════════════════════════════════════════════ */
 
-/* ─── Scroll Progress Bar ──────────────────────────────────── */
+
+
 .scroll-progress {
   position: fixed;
   top: 0;
@@ -2213,19 +2174,19 @@ footer {
   width: 100%;
 }
 
-/* ─── Blur Reveal ──────────────────────────────────────────── */
+
 .blur-reveal {
   filter: blur(10px);
   opacity: 0;
   transform: translateY(30px);
 }
 
-/* ─── Text Scramble ────────────────────────────────────────── */
+
 .scramble-text {
   display: inline-block;
 }
 
-/* ─── Glitch Effect for Footer ─────────────────────────────── */
+
 .footer-giant-text {
   position: relative;
   cursor: default;
@@ -2244,7 +2205,7 @@ footer {
   100% { transform: translate(0); }
 }
 
-/* ─── Typewriter cursor ────────────────────────────────────── */
+
 .typewriter-cursor {
   display: inline-block;
   width: 2px;
@@ -2260,24 +2221,24 @@ footer {
   50% { opacity: 0; }
 }
 
-/* ─── Hover 3D rotate for project cards ────────────────────── */
+
 .project-card {
   perspective: 1000px;
   transform-style: preserve-3d;
 }
 
-/* ─── Pulsing glow on skill hover ──────────────────────────── */
+
 .skill-card:hover .skill-icon {
   animation: pulse-glow 1.5s ease-in-out infinite;
 }
 
-/* ─── Marquee reverse on hover ─────────────────────────────── */
+
 .marquee-section:hover .marquee-track {
   animation-direction: reverse;
   animation-duration: 10s;
 }
 
-/* ─── Scroll fallback (if Lenis fails) ─────────────────────── */
+
 html {
   overflow-y: auto;
 }

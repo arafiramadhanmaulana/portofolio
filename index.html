@@ -8,25 +8,17 @@
   <meta name="keywords" content="Arafi Ramadhan Maulana, ITERA, Sains Data, Data Scientist, Full-Stack Developer, React, FastAPI, Python">
   <meta name="author" content="Arafi Ramadhan Maulana">
   <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='50' fill='%23818cf8'/><text y='65' x='20' font-family='sans-serif' font-size='60' font-weight='bold' fill='white'>AR</text></svg>">
-  <link rel="preload" as="image" href="photo.jpeg">
+  <link rel="preload" as="image" href="assets/images/photo.jpeg">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="assets/css/portfolio.css">
 </head>
 <body>
-
-  <!-- Scroll Progress Bar -->
   <div class="scroll-progress" id="scroll-progress"></div>
-
-  <!-- Particle Background Canvas -->
   <canvas id="particle-canvas"></canvas>
-
-  <!-- Custom Cursor -->
   <div class="custom-cursor" id="cursor"></div>
   <div class="custom-cursor-follower" id="cursor-follower"></div>
-
-  <!-- Preloader -->
   <div class="preloader" id="preloader">
     <div class="preloader-door preloader-left" id="preloader-left"></div>
     <div class="preloader-content" id="preloader-content">
@@ -39,12 +31,10 @@
     </div>
     <div class="preloader-door preloader-right" id="preloader-right"></div>
   </div>
-
-  <!-- Navigation -->
   <header>
     <a href="#home" class="logo-container glass-nav">
       <div class="logo-circle">
-        <img src="photo.jpeg" alt="" width="40" height="40">
+        <img src="assets/images/photo.jpeg" alt="" width="40" height="40">
       </div>
       <span class="logo-text">ARAFI RAMADHAN MAULANA</span>
     </a>
@@ -61,8 +51,6 @@
       <a href="https://wa.me/6289515928647" target="_blank" class="header-btn glass-nav">Hubungi Saya</a>
     </div>
   </header>
-
-  <!-- Mobile Navigation -->
   <div class="mobile-nav-container">
     <nav class="mobile-nav glass-nav">
       <div class="mobile-nav-pill" id="mobile-pill"></div>
@@ -74,11 +62,7 @@
       <a href="#contact" title="Kontak"><i data-lucide="mail"></i></a>
     </nav>
   </div>
-
-  <!-- Main Content -->
   <main>
-
-    <!-- ============ HERO ============ -->
     <section id="home" class="hero-section">
       <div class="hero-container">
         <div class="hero-content">
@@ -98,13 +82,11 @@
         </div>
         <div class="hero-visual">
           <div class="visual-image-wrapper">
-            <img src="photo.jpeg" alt="" class="visual-image" width="400" height="400" fetchpriority="high">
+            <img src="assets/images/photo.jpeg" alt="" class="visual-image" width="400" height="400" fetchpriority="high">
           </div>
         </div>
       </div>
     </section>
-
-    <!-- ============ SKILLS ============ -->
     <section id="skills" class="skills-section">
       <div class="section-header">
         <p class="subtitle">Keahlian &amp; Teknologi</p>
@@ -137,7 +119,6 @@
           <span class="skill-name">CSS3</span>
         </div>
       </div>
-
       <h3 class="skills-group-title">Framework & Library</h3>
       <div class="skills-grid">
         <div class="skill-card">
@@ -157,7 +138,6 @@
           <span class="skill-name">Streamlit</span>
         </div>
       </div>
-
       <h3 class="skills-group-title">Database & Backend</h3>
       <div class="skills-grid">
         <div class="skill-card">
@@ -173,35 +153,33 @@
           <span class="skill-name">Supabase</span>
         </div>
       </div>
-
       <h3 class="skills-group-title">Data & BI Tools</h3>
       <div class="skills-grid">
         <div class="skill-card">
-          <div class="skill-icon"><img src="https://img.icons8.com/color/48/google-looker.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <div class="skill-icon"><img src="assets/images/https://img.icons8.com/color/48/google-looker.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
           <span class="skill-name">Looker Studio</span>
         </div>
         <div class="skill-card">
-          <div class="skill-icon"><img src="https://img.icons8.com/color/48/tableau-software.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <div class="skill-icon"><img src="assets/images/https://img.icons8.com/color/48/tableau-software.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
           <span class="skill-name">Tableau</span>
         </div>
         <div class="skill-card">
-          <div class="skill-icon"><img src="https://img.icons8.com/color/48/power-bi.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <div class="skill-icon"><img src="assets/images/https://img.icons8.com/color/48/power-bi.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
           <span class="skill-name">Power BI</span>
         </div>
         <div class="skill-card">
-          <div class="skill-icon"><img src="https://img.icons8.com/color/48/ms-excel.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <div class="skill-icon"><img src="assets/images/https://img.icons8.com/color/48/ms-excel.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
           <span class="skill-name">Excel</span>
         </div>
         <div class="skill-card">
-          <div class="skill-icon"><img src="https://img.icons8.com/color/48/ms-word.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <div class="skill-icon"><img src="assets/images/https://img.icons8.com/color/48/ms-word.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
           <span class="skill-name">Word</span>
         </div>
         <div class="skill-card">
-          <div class="skill-icon"><img src="https://img.icons8.com/color/48/ms-powerpoint.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
+          <div class="skill-icon"><img src="assets/images/https://img.icons8.com/color/48/ms-powerpoint.png" alt="" aria-hidden="true" width="48" height="48" loading="lazy"></div>
           <span class="skill-name">PowerPoint</span>
         </div>
       </div>
-
       <h3 class="skills-group-title">DevOps & Deployment</h3>
       <div class="skills-grid">
         <div class="skill-card">
@@ -222,20 +200,15 @@
         </div>
       </div>
     </section>
-
-    <!-- ============ EXPERIENCE TIMELINE ============ -->
     <section id="experience" class="timeline-section">
       <div class="section-header">
         <p class="subtitle">Pengalaman &amp; Riwayat</p>
         <h2 class="title">Perjalanan Profesional</h2>
       </div>
       <div class="timeline-grid">
-
-        <!-- Column 1: Work -->
         <div>
           <h2 class="timeline-column-title"><i data-lucide="briefcase"></i> Riwayat Pekerjaan</h2>
           <div class="timeline-cards">
-            
             <div class="timeline-card">
               <span class="timeline-time">Apr 2026 - Saat ini</span>
               <h3 class="timeline-role">Full-Stack Web Developer</h3>
@@ -262,7 +235,6 @@
                 </ul>
               </div>
             </div>
-
             <div class="timeline-card">
               <span class="timeline-time">Jul 2025 - Agu 2025</span>
               <h3 class="timeline-role">Sales Data Analytics Intern</h3>
@@ -284,7 +256,6 @@
                 </ul>
               </div>
             </div>
-
             <div class="timeline-card">
               <span class="timeline-time">Jul 2024 - Agu 2024</span>
               <h3 class="timeline-role">Data Analyst Intern</h3>
@@ -300,15 +271,11 @@
                 </ul>
               </div>
             </div>
-
           </div>
         </div>
-
-        <!-- Column 2: Organizations & Volunteer -->
         <div>
           <h2 class="timeline-column-title"><i data-lucide="users"></i> Akademik &amp; Organisasi</h2>
           <div class="timeline-cards">
-
             <div class="timeline-card">
               <span class="timeline-time">2025 - Saat ini</span>
               <h3 class="timeline-role">Asisten Praktikum</h3>
@@ -325,7 +292,6 @@
                 </ul>
               </div>
             </div>
-
             <div class="timeline-card">
               <span class="timeline-time">Jan 2025 - Feb 2025</span>
               <h3 class="timeline-role">Data Project Volunteer</h3>
@@ -338,7 +304,6 @@
                 </ul>
               </div>
             </div>
-
             <div class="timeline-card">
               <span class="timeline-time">Nov 2024 - Des 2024</span>
               <h3 class="timeline-role">Sekretaris Jenderal</h3>
@@ -350,7 +315,6 @@
                 </ul>
               </div>
             </div>
-
             <div class="timeline-card">
               <span class="timeline-time">Feb 2024 - Des 2024</span>
               <h3 class="timeline-role">Staf Divisi Pengabdian Masyarakat</h3>
@@ -364,11 +328,8 @@
                 </ul>
               </div>
             </div>
-
           </div>
         </div>
-
-        <!-- Column 3: Education & Awards -->
         <div>
           <h2 class="timeline-column-title"><i data-lucide="graduation-cap"></i> Pendidikan &amp; Penghargaan</h2>
           <div class="timeline-cards">
@@ -383,85 +344,67 @@
               <h3 class="timeline-role">SMA IT Darul Qur'an</h3>
               <div class="timeline-company"><i data-lucide="book-open"></i> Jurusan IPA</div>
             </div>
-
           </div>
         </div>
-
       </div>
     </section>
-
-    <!-- ============ GALLERY ============ -->
     <section id="gallery" class="gallery-section" style="padding: 100px 60px;">
       <div class="section-header" style="text-align: center; margin-bottom: 40px;">
         <p class="subtitle" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--primary); font-weight: 700;">Bukti Pengalaman</p>
         <h2 class="title" style="font-size: clamp(1.8rem, 3vw, 2.5rem);">Galeri &amp; Sertifikasi</h2>
       </div>
       <div class="gallery-grid">
-        <!-- Asisten Praktikum (Agu 2025 - Des 2025) -->
         <div class="gallery-item" data-caption="Sertifikat Asisten Praktikum Data Mining (2025)">
-          <img src="Sertifikat%20Asisten%20Praktikum%20Data%20Mining.jpg" alt="" width="600" height="400" loading="lazy">
+          <img src="assets/images/Sertifikat%20Asisten%20Praktikum%20Data%20Mining.jpg" alt="" width="600" height="400" loading="lazy">
           <div class="gallery-caption">Sertifikat Asisten Praktikum Data Mining (2025)</div>
         </div>
         <div class="gallery-item" data-caption="Sertifikat Asisten Praktikum Pergudangan Data (2025)">
-          <img src="Sertifikat%20Asisten%20Praktikum%20Pergudangan%20Data.jpg" alt="" width="600" height="400" loading="lazy">
+          <img src="assets/images/Sertifikat%20Asisten%20Praktikum%20Pergudangan%20Data.jpg" alt="" width="600" height="400" loading="lazy">
           <div class="gallery-caption">Sertifikat Asisten Praktikum Pergudangan Data (2025)</div>
         </div>
         <div class="gallery-item" data-caption="Sertifikat Asisten Praktikum Kecerdasan Audio dan Visual (2025)">
-          <img src="Sertifikat%20Asisten%20Praktikum%20Kecerdasan%20Audio%20dan%20Visual.jpg" alt="" width="600" height="400" loading="lazy">
+          <img src="assets/images/Sertifikat%20Asisten%20Praktikum%20Kecerdasan%20Audio%20dan%20Visual.jpg" alt="" width="600" height="400" loading="lazy">
           <div class="gallery-caption">Sertifikat Asisten Praktikum Kecerdasan Audio dan Visual (2025)</div>
         </div>
         <div class="gallery-item" data-caption="Sertifikat Asisten Praktikum Komputasi Paralel (2025)">
-          <img src="Sertifikat%20Asisten%20Praktikum%20Komputasi%20Paralel.jpg" alt="" width="600" height="400" loading="lazy">
+          <img src="assets/images/Sertifikat%20Asisten%20Praktikum%20Komputasi%20Paralel.jpg" alt="" width="600" height="400" loading="lazy">
           <div class="gallery-caption">Sertifikat Asisten Praktikum Komputasi Paralel (2025)</div>
         </div>
-
-        <!-- Data Project Volunteer (Jan 2025 - Feb 2025) -->
         <div class="gallery-item" data-caption="Data Project Volunteer: Penyerahan Dashboard Desa Kalisari (2025)">
-          <img src="Penyerahan%20Dashboard%20Desa%20Kalisari.jpg" alt="" width="600" height="400" loading="lazy">
+          <img src="assets/images/Penyerahan%20Dashboard%20Desa%20Kalisari.jpg" alt="" width="600" height="400" loading="lazy">
           <div class="gallery-caption">Data Project Volunteer: Penyerahan Dashboard Desa Kalisari (2025)</div>
         </div>
-
-        <!-- Sekretaris Jenderal PEMIRA (Nov 2024 - Des 2024) -->
         <div class="gallery-item" data-caption="Sertifikat Sekretaris Jenderal Pemilihan Umum Raya Himpunan Mahasiswa Sains Data Adyatama">
-          <img src="Sertifikat%20Sekretaris%20Jenderal%20Pemilihan%20Umum%20Raya%20Himpunan%20Mahasiswa%20Sains%20Data%20Adyatama.jpg" alt="" width="600" height="400" loading="lazy">
+          <img src="assets/images/Sertifikat%20Sekretaris%20Jenderal%20Pemilihan%20Umum%20Raya%20Himpunan%20Mahasiswa%20Sains%20Data%20Adyatama.jpg" alt="" width="600" height="400" loading="lazy">
           <div class="gallery-caption">Sertifikat Sekretaris Jenderal Pemilihan Umum Raya Himpunan Mahasiswa Sains Data Adyatama</div>
         </div>
-
-        <!-- Sales Data Analyst Intern (Agu 2024 - Des 2024) -->
         <div class="gallery-item" data-caption="Sales Data Analytics Intern: Presentasi Proyek IndiHome e-Playbook (2025)">
-          <img src="Presentasi%20Proyek%20IndiHome%20e-Playbook.jpg" alt="" width="600" height="400" loading="lazy">
+          <img src="assets/images/Presentasi%20Proyek%20IndiHome%20e-Playbook.jpg" alt="" width="600" height="400" loading="lazy">
           <div class="gallery-caption">Sales Data Analytics Intern: Presentasi Proyek IndiHome e-Playbook (2025)</div>
         </div>
         <div class="gallery-item" data-caption="Sales Data Analytics Intern: Orbit Academy (2025)">
-          <img src="Orbit%20Academy%202025.jpg" alt="" width="600" height="400" loading="lazy">
+          <img src="assets/images/Orbit%20Academy%202025.jpg" alt="" width="600" height="400" loading="lazy">
           <div class="gallery-caption">Sales Data Analytics Intern: Orbit Academy (2025)</div>
         </div>
         <div class="gallery-item" data-caption="Sales Data Analytics Intern: Surat Keterangan Magang (2025)">
-          <img src="Surat%20Keterangan%20Magang%20Telkomsel.jpg" alt="" width="600" height="400" loading="lazy">
+          <img src="assets/images/Surat%20Keterangan%20Magang%20Telkomsel.jpg" alt="" width="600" height="400" loading="lazy">
           <div class="gallery-caption">Sales Data Analytics Intern: Surat Keterangan Magang (2025)</div>
         </div>
-
-        <!-- Staf Pengabdian Masyarakat (Feb 2024 - Des 2024) -->
         <div class="gallery-item" data-caption="Sertifikat Sekretaris 1 Program Kerja Sains Data Mengabdi">
-          <img src="Sertifikat%20Sekretaris%201%20Sains%20Data%20Mengabdi.jpg" alt="" width="600" height="400" loading="lazy">
+          <img src="assets/images/Sertifikat%20Sekretaris%201%20Sains%20Data%20Mengabdi.jpg" alt="" width="600" height="400" loading="lazy">
           <div class="gallery-caption">Sertifikat Sekretaris 1 Program Kerja Sains Data Mengabdi</div>
         </div>
-
-        <!-- Data Analyst Intern (Feb 2024 - Jun 2024) -->
         <div class="gallery-item" data-caption="Data Analyst Intern: Sertifikat Magang (2024)">
-          <img src="Arafi%20Ramadhan%20Maulana%20-%20Sertifikat%20Magang%20-%20Data%20Analyst.jpg" alt="" width="600" height="400" loading="lazy">
+          <img src="assets/images/Arafi%20Ramadhan%20Maulana%20-%20Sertifikat%20Magang%20-%20Data%20Analyst.jpg" alt="" width="600" height="400" loading="lazy">
           <div class="gallery-caption">Data Analyst Intern: Sertifikat Magang (2024)</div>
         </div>
       </div>
     </section>
-
-    <!-- ============ PROJECTS ============ -->
     <section id="projects" class="projects-section">
       <div class="projects-header">
         <h2 class="title">Karya Web &amp; Dashboard Interaktif</h2>
         <p class="desc">Kumpulan sistem informasi dan aplikasi web yang telah berhasil saya kembangkan dan siap untuk Anda coba secara langsung (live preview).</p>
       </div>
-
       <div class="featured-grid">
         <div class="browser-mockup">
           <div class="browser-header">
@@ -473,7 +416,6 @@
           </div>
           <a href="https://dashboard-dpcpkstapos.vercel.app/auth/login" target="_blank" class="browser-link-overlay" title="Buka Dashboard"></a>
         </div>
-
         <div class="browser-mockup">
           <div class="browser-header">
             <div class="browser-dots"><span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span></div>
@@ -485,7 +427,6 @@
           <a href="https://tabulasipks.vercel.app/" target="_blank" class="browser-link-overlay" title="Buka Tabulasi PKS"></a>
         </div>
       </div>
-
       <div class="projects-header" style="margin-top: 80px;">
         <h2 class="title">Arsip Riset &amp; Proyek</h2>
         <p class="desc">Jelajahi seluruh riset sains data saya—mulai dari pemodelan Machine Learning yang rumit hingga pengembangan sistem yang interaktif. <br><strong>💡 Silakan klik pada masing-masing kartu proyek di bawah ini untuk melihat detail kode sumbernya secara langsung di GitHub.</strong></p>
@@ -495,97 +436,76 @@
           <h3 class="project-title">Pengaruh Cumulative Explained Variance pada Incremental Principal Component Analysis terhadap Klasifikasi Naïve Bayes 16S rRNA Berbasis k-mer</h3>
           <div class="project-meta">Sep 2025–Apr 2026 | Institut Teknologi Sumatera</div>
         </a>
-
         <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Analisis%20Transisi%20Kategori%20Indeks%20Prestasi%20Mahasiswa%20Menggunakan%20Model%20Rantai%20Markov" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
           <h3 class="project-title">Analisis Transisi Kategori Indeks Prestasi Mahasiswa Menggunakan Model Rantai Markov — Proyek Pemodelan Stokastik</h3>
           <div class="project-meta">Okt 2025–Des 2025 | Institut Teknologi Sumatera</div>
         </a>
-
         <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Optimasi%20Arsitektur%20Convolutional%20Neural%20Network%20Berbasis%20Mel%20Spectrogram%20untuk%20Klasifikasi%20Nada%20Musikal%20pada%20Dataset%20Terbatas" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
           <h3 class="project-title">Optimasi Arsitektur Convolutional Neural Network Berbasis Mel Spectrogram untuk Klasifikasi Nada Musikal pada Dataset Terbatas — Proyek Deep Learning</h3>
           <div class="project-meta">Okt 2025–Des 2025 | Institut Teknologi Sumatera</div>
         </a>
-
         <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Penerapan%20Klasifikasi%20Random%20Forest%20pada%20Sistem%20Rekomendasi%20Produk%20Telekomunikasi%20Berbasis%20Preferensi%20Mahasiswa%20dengan%20Pendekatan%20K-Nearest%20Neighbors" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
           <h3 class="project-title">Penerapan Klasifikasi Random Forest pada Sistem Rekomendasi Produk Telekomunikasi Berbasis Preferensi Mahasiswa dengan Pendekatan K-Nearest Neighbors — Proyek Sains Data</h3>
           <div class="project-meta">Agu 2025–Des 2025 | Institut Teknologi Sumatera</div>
         </a>
-
         <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Repository%20Modul%20Praktikum%20Sains%20Data" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
           <h3 class="project-title">Repository Modul Praktikum Sains Data — Proyek Machine Learning Operations</h3>
           <div class="project-meta">Agu 2025–Des 2025 | Institut Teknologi Sumatera</div>
         </a>
-
         <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Analisis%20Sebaran%20Sekolah%20di%20Bandar%20Lampung%20Menggunakan%20Algoritma%20DBSCAN" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
           <h3 class="project-title">Analisis Sebaran Sekolah di Bandar Lampung Menggunakan Algoritma DBSCAN — Proyek Analisis Data Spasial</h3>
           <div class="project-meta">Mei 2025 | Institut Teknologi Sumatera</div>
         </a>
-
         <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Membuat%20dan%20Menjalankan%20Kontainer%20Docker%20untuk%20Aplikasi%20Flask" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
           <h3 class="project-title">Membuat dan Menjalankan Kontainer Docker untuk Aplikasi Flask – Proyek Komputasi Awan</h3>
           <div class="project-meta">Mei 2025 | Institut Teknologi Sumatera</div>
         </a>
-
         <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Pemanfaatan%20Ekosistem%20Hadoop%20untuk%20Analisis%20Data%20Ekspor%20Bahan%20Pangan%20di%20Indonesia" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
           <h3 class="project-title">Pemanfaatan Ekosistem Hadoop untuk Analisis Data Ekspor Bahan Pangan di Indonesia — Proyek Analisis Big Data</h3>
           <div class="project-meta">Mei 2025 | Institut Teknologi Sumatera</div>
         </a>
-
         <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Penerapan%20Bat%20Algorithm%20untuk%20Klasifikasi%20Kanker%20Payudara" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
           <h3 class="project-title">Penerapan Bat Algorithm untuk Klasifikasi Kanker Payudara — Proyek Swarm Intelligence</h3>
           <div class="project-meta">Mei 2025 | Institut Teknologi Sumatera</div>
         </a>
-
         <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Perancangan%20Data%20Warehouse%20untuk%20Analisis%20Preferensi%20Konsumen%20Kendaraan%20di%20Industri%20Otomotif" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
           <h3 class="project-title">Perancangan Data Warehouse untuk Analisis Preferensi Konsumen Kendaraan di Industri Otomotif — Proyek Pergudangan Data</h3>
           <div class="project-meta">Mei 2025 | Institut Teknologi Sumatera</div>
         </a>
-
         <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Analisis%20Pergerakan%20Pengunjung%20dan%20Hubungan%20Antar%20Lokasi%20di%20Area%20Wisata" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
           <h3 class="project-title">Analisis Pergerakan Pengunjung dan Hubungan antar Lokasi di Area Wisata — Proyek Visualisasi Data dan Informasi</h3>
           <div class="project-meta">Mei 2024 | Institut Teknologi Sumatera</div>
         </a>
-
         <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Klasifikasi%20Rumah%20di%20Daerah%20Lampung%20dengan%20Menggunakan%20KNN" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
           <h3 class="project-title">Klasifikasi Rumah di Daerah Lampung dengan Menggunakan KNN — Proyek Statistika Sains Data</h3>
           <div class="project-meta">Mei 2024 | Institut Teknologi Sumatera</div>
         </a>
-
         <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Analisis%20Perilaku%20Penggunaan%20Laptop" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
           <h3 class="project-title">Analisis Perilaku Penggunaan Laptop — Proyek Logika dan Matematika Diskrit</h3>
           <div class="project-meta">Des 2023 | Institut Teknologi Sumatera</div>
         </a>
-
         <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Learning%20Management%20System%20(E-Learning)" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
           <h3 class="project-title">Learning Management System (LMS) — Proyek Algoritma Pemrograman</h3>
           <div class="project-meta">Des 2023 | Institut Teknologi Sumatera</div>
         </a>
-
         <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Penerapan%20Big%20Data%20Terhadap%20Transaksi%20Sales%20pada%20Bisnis%20Toko%20Online%20Berbasis%20di%20Inggris" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
           <h3 class="project-title">Penerapan Big Data terhadap Transaksi Sales Pada Bisnis Toko Online Berbasis di Inggris — Proyek Prinsip Ekonomi Mikro</h3>
           <div class="project-meta">Nov 2023–Des 2023 | Institut Teknologi Sumatera</div>
         </a>
-
         <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Penerapan%20Directed%20Acyclic%20Graph%20Terhadap%20Jalur%20KRL%20Jabodetabek" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
           <h3 class="project-title">Penerapan Directed Acyclic Graph terhadap Jalur KRL Jabodetabek — Proyek Struktur Data</h3>
           <div class="project-meta">Des 2023 | Institut Teknologi Sumatera</div>
         </a>
-
         <a href="https://github.com/arafiramadhanmaulana/proyek-kuliah/tree/main/Penerapan%20Metode%20Eksplorasi%20dan%20Transformasi%20Data%20dengan%20Pengaruh%20Suhu%20terhadap%20Tinggi%20Muka%20AIR%20(TMA)" target="_blank" class="project-card" style="text-decoration:none;color:inherit;">
           <h3 class="project-title">Penerapan Metode Eksplorasi dan Transformasi Data dengan Pengaruh Suhu Terhadap Tinggi Muka Air (TMA) — Proyek Analisis Data Statistik</h3>
           <div class="project-meta">Des 2023 | Institut Teknologi Sumatera</div>
         </a>
       </div>
     </section>
-
-    <!-- Lightbox Overlay -->
     <div class="lightbox-overlay" id="lightbox-overlay" onclick="this.classList.remove('active')">
       <img id="lightbox-img" src="" alt="Preview">
       <div id="lightbox-caption" class="lightbox-caption"></div>
     </div>
-
-
-    <!-- ============ CONTACT ============ -->
     <section id="contact" class="contact-section">
       <div class="contact-grid">
         <div class="contact-side">
@@ -630,14 +550,12 @@
         </div>
       </div>
     </section>
-
-    <!-- ============ FOOTER ============ -->
     <footer>
       <div class="footer-inner">
         <div class="footer-columns">
           <div>
             <a href="#home" class="footer-brand">
-              <div class="footer-brand-logo"><img src="photo.jpeg" alt="" width="40" height="40" loading="lazy"></div>
+              <div class="footer-brand-logo"><img src="assets/images/photo.jpeg" alt="" width="40" height="40" loading="lazy"></div>
               <span class="footer-brand-name">ARAFI RAMADHAN</span>
             </a>
             <p class="footer-desc">Menggabungkan sains data tingkat lanjut, analisis machine learning yang mendalam, dan arsitektur web modern yang menawan untuk memberdayakan bisnis di seluruh dunia.</p>
@@ -678,18 +596,12 @@
         </div>
       </div>
     </footer>
-
   </main>
-
-  <!-- CDN Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
   <script src="https://unpkg.com/lucide@latest" defer></script>
-  <script src="script.js" defer></script>
-  <!-- Visitor Tracking -->
-  <script src="tracker.js" defer></script>
+  <script src="assets/js/portfolio.js" type="module" defer></script>
+  <script src="assets/js/tracker.js" defer></script>
 </body>
 </html>
-
-

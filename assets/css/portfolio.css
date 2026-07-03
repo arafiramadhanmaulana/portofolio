@@ -1034,15 +1034,6 @@ header {
   font-size: 12px;
   color: var(--text-muted);
   margin-top: 2px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.timeline-company i {
-  width: 12px;
-  font-size: 11px;
-  text-align: center;
 }
 
 .timeline-desc {

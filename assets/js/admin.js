@@ -33,10 +33,7 @@ function formatDuration(sec) {
   return `${m}m ${s}s`;
 }
 
-function isOnline(visitor) {
-  if (!visitor.last_active_at) return false;
-  return (Date.now() - new Date(visitor.last_active_at).getTime()) / 1000 < 30;
-}
+
 
 function getDateString(isoDate) {
   return isoDate.split('T')[0];
@@ -119,12 +116,10 @@ document.addEventListener('keydown', e => {
 function renderMetrics() {
   const todayStr = getDateString(new Date().toISOString());
   let todayCount = 0;
-  let onlineCount = 0;
   let totalDur = 0;
   
   filteredData.forEach(v => {
     if (getDateString(v.created_at) === todayStr) todayCount++;
-    if (isOnline(v)) onlineCount++;
     totalDur += (v.duration_seconds || 0);
   });
   
@@ -133,12 +128,10 @@ function renderMetrics() {
   
   const eTotal = document.getElementById('m-total');
   const eToday = document.getElementById('m-today');
-  const eOnline = document.getElementById('m-online');
   const eAvg = document.getElementById('m-avg');
   
   if (eTotal) eTotal.textContent = total;
   if (eToday) eToday.textContent = todayCount;
-  if (eOnline) eOnline.textContent = onlineCount;
   if (eAvg) eAvg.textContent = formatDuration(avg);
 }
 
@@ -185,11 +178,10 @@ function renderFeed() {
   
   const items = filteredData.slice(0, 5);
   items.forEach(v => {
-    const live = isOnline(v);
     const div = document.createElement('div');
     div.className = 'feed-item';
     div.innerHTML = `
-      <div class="feed-icon ${live ? 'online' : ''}">
+      <div class="feed-icon">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
       </div>
       <div class="feed-content">
@@ -209,12 +201,10 @@ function renderTable() {
   const items = filteredData.slice(0, 20);
   items.forEach(v => {
     const tr = document.createElement('tr');
-    const live = isOnline(v);
     const dt = new Date(v.created_at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
     const clk = v.clicks ? escapeHtml(v.clicks).split(' | ').slice(0, 3).join(', ') : '-';
     
     tr.innerHTML = `
-      <td><span class="badge ${live ? 'badge-online' : 'badge-offline'}">${live ? 'Online' : 'Offline'}</span></td>
       <td style="color: var(--text-muted); font-size: 12px;">${dt}</td>
       <td>
         <div style="font-weight: 500;">${escapeHtml(v.ip_address)}</div>

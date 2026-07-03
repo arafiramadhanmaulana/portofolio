@@ -1,113 +1,185 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>Arafi Ramadhan Maulana</title>
+  <title>Analytics Platform | Arafi Ramadhan Maulana</title>
   <link rel="stylesheet" href="assets/css/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-  <div class="gate" id="gate">
-    <div class="gate-box">
-      <h2 class="gate-title">Admin Access</h2>
-      <p class="gate-desc">Enter password to view analytics</p>
-      <input type="password" id="gate-pw" class="gate-input" placeholder="Password" autofocus>
-      <button class="btn btn-primary" id="gate-btn" style="width: 100%;">Sign In</button>
-      <div class="gate-err" id="gate-err">Incorrect password</div>
+  <div class="auth-gate" id="gate">
+    <div class="auth-box">
+      <div class="auth-brand">Analytics Access</div>
+      <p class="auth-desc">Secure portal for traffic analysis</p>
+      <input type="password" id="gate-pw" class="auth-input" placeholder="Enter security key" autofocus>
+      <button class="btn btn-primary" id="gate-btn">Authenticate</button>
+      <div class="auth-err" id="gate-err">Access denied</div>
     </div>
   </div>
 
-  <div class="layout" id="app" style="display: none;">
+  <div class="app-layout" id="app" style="display: none;">
     <aside class="sidebar">
       <div class="brand">
-        <div class="brand-text" style="margin-left: 0;">AR Analytics</div>
+        <div class="brand-title">Analytics</div>
       </div>
-      <nav class="nav-group">
-        <div class="nav-label">General</div>
-        <a href="#" class="nav-item active">
+      <nav class="nav-menu">
+        <button class="nav-btn active" data-tab="overview">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
           Overview
-        </a>
-
-        <a href="#" class="nav-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-          Visitors
-        </a>
+        </button>
+        <button class="nav-btn" data-tab="analytics">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          Analytics
+        </button>
+        <button class="nav-btn" data-tab="logs">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          Raw Logs
+        </button>
       </nav>
       <div class="sidebar-footer">
-        <a href="/" class="nav-item">
+        <a href="/" class="nav-link">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M13 12H3"/></svg>
-          Back to Site
+          Exit Platform
         </a>
       </div>
     </aside>
 
     <main class="main-content">
       <header class="topbar">
-        <div class="search-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="search-input" placeholder="Search by IP, city, or device...">
-          <kbd class="search-shortcut">/</kbd>
+        <div class="topbar-left">
+          <h1 class="page-title" id="page-title">Overview</h1>
         </div>
-        <div class="topbar-actions">
-          <div class="system-status" id="system-status">
-            <span class="status-dot"></span>
-            <span class="status-text">System Online</span>
+        <div class="topbar-right">
+          <div class="status-indicator">
+            <span class="status-dot" id="network-dot"></span>
+            <span class="status-text" id="network-text">Checking</span>
           </div>
-          <button class="btn" id="export-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Export
+          <button class="btn btn-outline" id="export-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export CSV
           </button>
         </div>
       </header>
 
-      <div class="scroll-area">
-        <h1 class="header-title">Dashboard Overview</h1>
+      <div class="scroll-container">
+        
+        <div class="tab-content active" id="tab-overview">
+          <div class="kpi-grid">
+            <div class="kpi-card"><div class="kpi-label">Total Sessions</div><div class="kpi-val" id="kpi-sessions">0</div></div>
+            <div class="kpi-card"><div class="kpi-label">Unique Visitors</div><div class="kpi-val" id="kpi-unique">0</div></div>
+            <div class="kpi-card"><div class="kpi-label">Page Views</div><div class="kpi-val" id="kpi-views">0</div></div>
+            <div class="kpi-card"><div class="kpi-label">Bounce Rate</div><div class="kpi-val" id="kpi-bounce">0%</div></div>
+            
+            <div class="kpi-card"><div class="kpi-label">Visitors Today</div><div class="kpi-val" id="kpi-today">0</div></div>
+            <div class="kpi-card"><div class="kpi-label">Visitors This Week</div><div class="kpi-val" id="kpi-week">0</div></div>
+            <div class="kpi-card"><div class="kpi-label">Visitors This Month</div><div class="kpi-val" id="kpi-month">0</div></div>
+            <div class="kpi-card"><div class="kpi-label">Avg Duration</div><div class="kpi-val" id="kpi-duration">0s</div></div>
 
+            <div class="kpi-card"><div class="kpi-label">New Visitors</div><div class="kpi-val" id="kpi-new">0</div></div>
+            <div class="kpi-card"><div class="kpi-label">Returning</div><div class="kpi-val" id="kpi-returning">0</div></div>
+            <div class="kpi-card"><div class="kpi-label">Peak Hour</div><div class="kpi-val" id="kpi-peak">-</div></div>
+            <div class="kpi-card"><div class="kpi-label">Total Clicks</div><div class="kpi-val" id="kpi-clicks">0</div></div>
+          </div>
 
-
-        <div class="panel">
-          <div class="panel-header">
-            <div class="panel-title">Activity Logs <span id="total-logs" style="font-size: 12px; color: var(--text-muted); font-weight: 400; margin-left: 8px;">(0)</span></div>
-            <div class="filters-bar" style="margin: 0; display: flex; gap: 8px;">
-              <input type="date" id="filter-date" class="filter-select" style="color: var(--text-main);">
-              <select class="filter-select" id="filter-device">
-                <option value="all">All Devices</option>
-                <option value="Desktop">Desktop</option>
-                <option value="Mobile">Mobile</option>
-              </select>
+          <div class="panel-grid-2">
+            <div class="panel">
+              <div class="panel-head">Most Visited Pages</div>
+              <div class="panel-body list-body" id="list-top-pages"></div>
+            </div>
+            <div class="panel">
+              <div class="panel-head">Top Referrers</div>
+              <div class="panel-body list-body" id="list-top-referrers"></div>
             </div>
           </div>
-          <div class="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>Time</th>
-                  <th>IP / ISP</th>
-                  <th>Location</th>
-                  <th>Device / OS</th>
-                  <th>Duration</th>
-                  <th>Interactions</th>
-                </tr>
-              </thead>
-              <tbody id="table-body">
-                <tr>
-                  <td><div class="skel"></div></td>
-                  <td><div class="skel"></div></td>
-                  <td><div class="skel"></div></td>
-                  <td><div class="skel"></div></td>
-                  <td><div class="skel"></div></td>
-                  <td><div class="skel"></div></td>
-                </tr>
-              </tbody>
-            </table>
+        </div>
+
+        <div class="tab-content" id="tab-analytics">
+          <div class="panel-grid-1">
+            <div class="panel">
+              <div class="panel-head">Traffic Growth & Trend (30 Days)</div>
+              <div class="panel-body chart-wrap">
+                <canvas id="chart-traffic"></canvas>
+              </div>
+            </div>
           </div>
-          <div class="pagination-bar">
-            <button class="btn btn-sm" id="page-prev" disabled>Previous</button>
-            <span class="page-info" id="page-info">Page 1 of 1</span>
-            <button class="btn btn-sm" id="page-next" disabled>Next</button>
+          
+          <div class="panel-grid-3">
+            <div class="panel">
+              <div class="panel-head">Device Distribution</div>
+              <div class="panel-body chart-wrap-sm">
+                <canvas id="chart-device"></canvas>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-head">Browser Usage</div>
+              <div class="panel-body chart-wrap-sm">
+                <canvas id="chart-browser"></canvas>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-head">Operating Systems</div>
+              <div class="panel-body chart-wrap-sm">
+                <canvas id="chart-os"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-grid-2">
+            <div class="panel">
+              <div class="panel-head">Geographic Analytics (Top Regions)</div>
+              <div class="panel-body list-body" id="list-geo"></div>
+            </div>
+            <div class="panel">
+              <div class="panel-head">Hourly Traffic Heatmap</div>
+              <div class="panel-body chart-wrap-md">
+                <canvas id="chart-hourly"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="tab-logs">
+          <div class="panel">
+            <div class="panel-head" style="flex-wrap: wrap; gap: 12px;">
+              <div>Raw Activity Logs <span id="log-count" style="color: var(--text-muted); font-size: 13px; font-weight: 400; margin-left: 8px;"></span></div>
+              <div class="filters">
+                <div class="search-wrap">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <input type="text" id="log-search" placeholder="Search IP, location, device...">
+                </div>
+                <input type="date" id="log-date" class="filter-input">
+                <select id="log-device" class="filter-input">
+                  <option value="all">All Devices</option>
+                  <option value="Desktop">Desktop</option>
+                  <option value="Mobile">Mobile</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>IP / Identity</th>
+                    <th>Location / ISP</th>
+                    <th>System / Device</th>
+                    <th>Page Flow</th>
+                    <th>Duration</th>
+                  </tr>
+                </thead>
+                <tbody id="log-tbody">
+                  <tr><td colspan="6" class="text-center" style="padding: 40px; color: var(--text-muted);">Initializing Engine...</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="pagination">
+              <button class="btn btn-outline btn-sm" id="page-prev">Previous</button>
+              <div class="page-state" id="page-state">Page 1</div>
+              <button class="btn btn-outline btn-sm" id="page-next">Next</button>
+            </div>
           </div>
         </div>
 
@@ -115,14 +187,15 @@
     </main>
   </div>
 
-  <div class="modal-overlay" id="log-modal" style="display: none;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">Activity Details</h3>
-        <button class="modal-close" id="modal-close">✕</button>
+  <div class="modal" id="modal-log">
+    <div class="modal-box">
+      <div class="modal-head">
+        <div class="modal-title">Session Details</div>
+        <button class="modal-close" id="modal-close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
       </div>
-      <div class="modal-body" id="modal-body">
-      </div>
+      <div class="modal-body" id="modal-content"></div>
     </div>
   </div>
 

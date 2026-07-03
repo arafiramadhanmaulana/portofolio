@@ -4,6 +4,8 @@ const P_HASH = 'be6dd1b3e7dc26dae2a8e152174f3a44ab8f9082271c490992c61f09ba5b1638
 
 let rawData = [];
 let filteredData = [];
+let currentPage = 1;
+const itemsPerPage = 20;
 
 async function sha256(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
@@ -70,7 +72,7 @@ if (sessionStorage.getItem('admin_auth') === '1') {
 
 async function fetchData() {
   try {
-    const res = await fetch(`${SUPA_URL}/rest/v1/visitors?select=*&order=created_at.desc`, {
+    const res = await fetch(`${SUPA_URL}/rest/v1/visitors?select=*&order=created_at.desc&limit=10000`, {
       headers: {
         'apikey': SUPA_KEY,
         'Authorization': `Bearer ${SUPA_KEY}`
@@ -87,6 +89,7 @@ async function fetchData() {
 function applyFilters() {
   const q = document.getElementById('search-input')?.value.toLowerCase() || '';
   const dev = document.getElementById('filter-device')?.value || 'all';
+  const dt = document.getElementById('filter-date')?.value || '';
   
   filteredData = rawData.filter(v => {
     if (q) {
@@ -94,17 +97,20 @@ function applyFilters() {
       if (!hay.includes(q)) return false;
     }
     if (dev !== 'all' && v.device_type !== dev) return false;
+    if (dt && getDateString(v.created_at) !== dt) return false;
     return true;
   });
   
-  renderMetrics();
-  renderChart();
-  renderFeed();
+  currentPage = 1;
+  const eTotal = document.getElementById('total-logs');
+  if (eTotal) eTotal.textContent = `(${filteredData.length})`;
+  
   renderTable();
 }
 
 document.getElementById('search-input')?.addEventListener('input', applyFilters);
 document.getElementById('filter-device')?.addEventListener('change', applyFilters);
+document.getElementById('filter-date')?.addEventListener('change', applyFilters);
 
 document.addEventListener('keydown', e => {
   if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
@@ -113,94 +119,22 @@ document.addEventListener('keydown', e => {
   }
 });
 
-function renderMetrics() {
-  const todayStr = getDateString(new Date().toISOString());
-  let todayCount = 0;
-  let totalDur = 0;
-  
-  filteredData.forEach(v => {
-    if (getDateString(v.created_at) === todayStr) todayCount++;
-    totalDur += (v.duration_seconds || 0);
-  });
-  
-  const total = filteredData.length;
-  const avg = total > 0 ? Math.floor(totalDur / total) : 0;
-  
-  const eTotal = document.getElementById('m-total');
-  const eToday = document.getElementById('m-today');
-  const eAvg = document.getElementById('m-avg');
-  
-  if (eTotal) eTotal.textContent = total;
-  if (eToday) eToday.textContent = todayCount;
-  if (eAvg) eAvg.textContent = formatDuration(avg);
-}
-
-function renderChart() {
-  const days = [];
-  const now = new Date();
-  for (let i = 6; i >= 0; i--) {
-    const d = new Date(now);
-    d.setDate(d.getDate() - i);
-    days.push(getDateString(d.toISOString()));
-  }
-  
-  const counts = {};
-  days.forEach(d => counts[d] = 0);
-  filteredData.forEach(v => {
-    const k = getDateString(v.created_at);
-    if (counts[k] !== undefined) counts[k]++;
-  });
-  
-  const max = Math.max(...Object.values(counts)) || 1;
-  const wrap = document.getElementById('chart-wrap');
-  if (!wrap) return;
-  wrap.innerHTML = '';
-  
-  days.forEach(d => {
-    const pct = Math.max((counts[d] / max) * 100, 4);
-    const lbl = new Date(`${d}T00:00:00`).toLocaleDateString('en-US', { weekday: 'short' });
-    
-    const col = document.createElement('div');
-    col.className = 'chart-bar-wrap';
-    col.innerHTML = `
-      <div style="font-size: 10px; color: var(--text-muted); text-align: center; margin-bottom: 4px;">${counts[d]}</div>
-      <div class="chart-bar" style="height: ${pct}%"></div>
-      <div style="font-size: 10px; color: var(--text-faint); text-align: center; margin-top: 6px;">${lbl}</div>
-    `;
-    wrap.appendChild(col);
-  });
-}
-
-function renderFeed() {
-  const wrap = document.getElementById('feed-wrap');
-  if (!wrap) return;
-  wrap.innerHTML = '';
-  
-  const items = filteredData.slice(0, 5);
-  items.forEach(v => {
-    const div = document.createElement('div');
-    div.className = 'feed-item';
-    div.innerHTML = `
-      <div class="feed-icon">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-      </div>
-      <div class="feed-content">
-        <div class="feed-title">${escapeHtml(v.city)}, ${escapeHtml(v.country)}</div>
-        <div class="feed-meta">${escapeHtml(v.device_type)} · ${escapeHtml(v.browser)} · ${timeAgo(v.created_at)}</div>
-      </div>
-    `;
-    wrap.appendChild(div);
-  });
-}
-
 function renderTable() {
   const tbody = document.getElementById('table-body');
   if (!tbody) return;
   tbody.innerHTML = '';
   
-  const items = filteredData.slice(0, 20);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage) || 1;
+  if (currentPage > totalPages) currentPage = totalPages;
+  
+  const startIdx = (currentPage - 1) * itemsPerPage;
+  const items = filteredData.slice(startIdx, startIdx + itemsPerPage);
+  
   items.forEach(v => {
     const tr = document.createElement('tr');
+    tr.style.cursor = 'pointer';
+    tr.onclick = () => showLogDetails(v);
+    
     const dt = new Date(v.created_at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
     const clk = v.clicks ? escapeHtml(v.clicks).split(' | ').slice(0, 3).join(', ') : '-';
     
@@ -223,7 +157,60 @@ function renderTable() {
     `;
     tbody.appendChild(tr);
   });
+  
+  // Update Pagination UI
+  const eInfo = document.getElementById('page-info');
+  const ePrev = document.getElementById('page-prev');
+  const eNext = document.getElementById('page-next');
+  
+  if (eInfo) eInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+  if (ePrev) ePrev.disabled = currentPage === 1;
+  if (eNext) eNext.disabled = currentPage === totalPages || totalPages === 0;
 }
+
+document.getElementById('page-prev')?.addEventListener('click', () => {
+  if (currentPage > 1) {
+    currentPage--;
+    renderTable();
+  }
+});
+
+document.getElementById('page-next')?.addEventListener('click', () => {
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage) || 1;
+  if (currentPage < totalPages) {
+    currentPage++;
+    renderTable();
+  }
+});
+
+function showLogDetails(v) {
+  const modal = document.getElementById('log-modal');
+  const body = document.getElementById('modal-body');
+  if (!modal || !body) return;
+  
+  body.innerHTML = `
+    <div style="margin-bottom: 12px;"><strong>Time:</strong> ${new Date(v.created_at).toLocaleString('en-US')}</div>
+    <div style="margin-bottom: 12px;"><strong>IP Address:</strong> ${escapeHtml(v.ip_address)}</div>
+    <div style="margin-bottom: 12px;"><strong>Location:</strong> ${escapeHtml(v.city)}, ${escapeHtml(v.country)}</div>
+    <div style="margin-bottom: 12px;"><strong>ISP:</strong> ${escapeHtml(v.isp)}</div>
+    <div style="margin-bottom: 12px;"><strong>Device:</strong> ${escapeHtml(v.device_type)} (${escapeHtml(v.os)})</div>
+    <div style="margin-bottom: 12px;"><strong>Browser:</strong> ${escapeHtml(v.browser)}</div>
+    <div style="margin-bottom: 12px;"><strong>Session Duration:</strong> ${formatDuration(v.duration_seconds)}</div>
+    <div><strong>Interactions:</strong><br><pre style="background: var(--surface-2); padding: 8px; border-radius: 4px; margin-top: 4px; white-space: pre-wrap; font-size: 11px;">${escapeHtml(v.clicks || 'No interactions')}</pre></div>
+  `;
+  modal.style.display = 'flex';
+}
+
+document.getElementById('modal-close')?.addEventListener('click', () => {
+  const modal = document.getElementById('log-modal');
+  if (modal) modal.style.display = 'none';
+});
+
+document.getElementById('log-modal')?.addEventListener('click', (e) => {
+  if (e.target.id === 'log-modal') {
+    e.target.style.display = 'none';
+  }
+});
 
 document.getElementById('export-btn')?.addEventListener('click', () => {
   if (!filteredData.length) return;

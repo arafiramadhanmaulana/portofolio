@@ -1,0 +1,14 @@
+- `[x]` Refactor Admin HTML
+  - `[x]` Remove `metrics-grid`, `grid-2-col` (Traffic Trends & Recent Activity Feed)
+  - `[x]` Expand Visitor Logs table to be the main view (Activity Logs)
+  - `[x]` Add date filter, total logs count, and pagination controls
+  - `[x]` Add modal for log details
+- `[x]` Refactor Admin JS
+  - `[x]` Update Supabase fetch to use `&limit=10000`
+  - `[x]` Remove unused `renderMetrics`, `renderChart`, `renderFeed` functions and variables
+  - `[x]` Implement client-side pagination (20 items/page) and date filtering
+  - `[x]` Implement modal open/close logic and data population
+- `[x]` Refactor Admin CSS
+  - `[x]` Remove unused classes (metric cards, charts, feed list)
+  - `[x]` Add CSS for modal, pagination controls, and layout adjustments
+- `[x]` Ensure code is clean, production ready, no comments, no dead code.

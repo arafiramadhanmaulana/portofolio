@@ -66,48 +66,13 @@
       <div class="scroll-area">
         <h1 class="header-title">Dashboard Overview</h1>
 
-        <div class="metrics-grid">
-          <div class="metric-card">
-            <div class="metric-title">Total Visitors</div>
-            <div class="metric-value" id="m-total">0</div>
-            <div class="metric-trend"><span class="trend-up">↑</span> All time</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-title">Visitors Today</div>
-            <div class="metric-value" id="m-today">0</div>
-            <div class="metric-trend">Last 24h</div>
-          </div>
 
-          <div class="metric-card">
-            <div class="metric-title">Avg Session Duration</div>
-            <div class="metric-value" id="m-avg">0s</div>
-            <div class="metric-trend">Per visit</div>
-          </div>
-        </div>
-
-        <div class="grid-2-col">
-          <div class="panel">
-            <div class="panel-header">
-              <div class="panel-title">Traffic Trends (7 Days)</div>
-            </div>
-            <div class="panel-body">
-              <div class="chart-placeholder" id="chart-wrap"></div>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="panel-header">
-              <div class="panel-title">Recent Activity Feed</div>
-            </div>
-            <div class="panel-body">
-              <div class="feed-list" id="feed-wrap"></div>
-            </div>
-          </div>
-        </div>
 
         <div class="panel">
           <div class="panel-header">
-            <div class="panel-title">Visitor Logs</div>
-            <div class="filters-bar" style="margin: 0;">
+            <div class="panel-title">Activity Logs <span id="total-logs" style="font-size: 12px; color: var(--text-muted); font-weight: 400; margin-left: 8px;">(0)</span></div>
+            <div class="filters-bar" style="margin: 0; display: flex; gap: 8px;">
+              <input type="date" id="filter-date" class="filter-select" style="color: var(--text-main);">
               <select class="filter-select" id="filter-device">
                 <option value="all">All Devices</option>
                 <option value="Desktop">Desktop</option>
@@ -139,10 +104,26 @@
               </tbody>
             </table>
           </div>
+          <div class="pagination-bar">
+            <button class="btn btn-sm" id="page-prev" disabled>Previous</button>
+            <span class="page-info" id="page-info">Page 1 of 1</span>
+            <button class="btn btn-sm" id="page-next" disabled>Next</button>
+          </div>
         </div>
 
       </div>
     </main>
+  </div>
+
+  <div class="modal-overlay" id="log-modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Activity Details</h3>
+        <button class="modal-close" id="modal-close">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+      </div>
+    </div>
   </div>
 
   <script src="assets/js/admin.js"></script>

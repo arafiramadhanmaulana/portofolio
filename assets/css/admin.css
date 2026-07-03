@@ -278,55 +278,6 @@ button, input, select {
   margin-bottom: 24px;
 }
 
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-bottom: 24px;
-}
-
-.metric-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-}
-
-.metric-title {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-muted);
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.metric-value {
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1;
-  margin-bottom: 8px;
-}
-
-.metric-trend {
-  font-size: 12px;
-  font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.trend-up { color: var(--green); }
-.trend-down { color: var(--red); }
-
-.grid-2-col {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 24px;
-  margin-bottom: 24px;
-}
-
 .panel {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -353,79 +304,13 @@ button, input, select {
   flex: 1;
 }
 
-.chart-placeholder {
-  height: 240px;
-  display: flex;
-  align-items: flex-end;
-  gap: 8px;
+.skel {
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  height: 16px;
 }
-
-.chart-bar-wrap {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  height: 100%;
-}
-
-.chart-bar {
-  background: var(--surface-3);
-  border-radius: 4px 4px 0 0;
-  width: 100%;
-  transition: height 0.4s ease, background 0.2s ease;
-}
-
-.chart-bar:hover {
-  background: var(--border-2);
-}
-
-.feed-list {
-  display: flex;
-  flex-direction: column;
-}
-
-.feed-item {
-  display: flex;
-  gap: 16px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.feed-item:last-child {
-  border-bottom: none;
-}
-
-.feed-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--surface-2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.feed-icon.online {
-  background: var(--green-bg);
-  color: var(--green);
-}
-
-.feed-content {
-  flex: 1;
-}
-
-.feed-title {
-  font-size: 13px;
-  font-weight: 500;
-  margin-bottom: 4px;
-}
-
-.feed-meta {
-  font-size: 11px;
-  color: var(--text-muted);
-}
-
 .filters-bar {
   display: flex;
   gap: 12px;
@@ -482,16 +367,6 @@ tbody tr:hover {
 }
 
 .badge-online { background: var(--green-bg); color: var(--green); }
-.badge-offline { background: var(--surface-3); color: var(--text-muted); }
-
-.skel {
-  background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-  border-radius: 4px;
-  height: 16px;
-}
-
 @keyframes shimmer {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }

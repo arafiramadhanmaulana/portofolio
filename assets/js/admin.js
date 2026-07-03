@@ -242,3 +242,22 @@ document.getElementById('export-btn')?.addEventListener('click', () => {
   a.download = `analytics_export.csv`;
   a.click();
 });
+
+// System Status Logic
+function updateSystemStatus() {
+  const statusDot = document.querySelector('.status-dot');
+  const statusText = document.querySelector('.status-text');
+  if (!statusDot || !statusText) return;
+  
+  if (navigator.onLine) {
+    statusDot.classList.add('online');
+    statusText.textContent = 'System Online';
+  } else {
+    statusDot.classList.remove('online');
+    statusText.textContent = 'System Offline';
+  }
+}
+
+window.addEventListener('online', updateSystemStatus);
+window.addEventListener('offline', updateSystemStatus);
+document.addEventListener('DOMContentLoaded', updateSystemStatus);

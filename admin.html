@@ -22,8 +22,7 @@
   <div class="layout" id="app" style="display: none;">
     <aside class="sidebar">
       <div class="brand">
-        <div class="brand-icon"></div>
-        <div class="brand-text">AR Analytics</div>
+        <div class="brand-text" style="margin-left: 0;">AR Analytics</div>
       </div>
       <nav class="nav-group">
         <div class="nav-label">General</div>
@@ -31,10 +30,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
           Overview
         </a>
-        <a href="#" class="nav-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-          Real-time
-        </a>
+
         <a href="#" class="nav-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
           Visitors
@@ -56,6 +52,10 @@
           <kbd class="search-shortcut">/</kbd>
         </div>
         <div class="topbar-actions">
+          <div class="system-status" id="system-status">
+            <span class="status-dot"></span>
+            <span class="status-text">System Online</span>
+          </div>
           <button class="btn" id="export-btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Export

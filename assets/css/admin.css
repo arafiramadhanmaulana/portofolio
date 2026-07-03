@@ -210,6 +210,32 @@ button, input, select {
   gap: 12px;
 }
 
+.system-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface-2);
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 0 2px var(--red-bg);
+}
+
+.status-dot.online {
+  background: var(--green);
+  box-shadow: 0 0 0 2px var(--green-bg);
+}
+
 .btn {
   display: inline-flex;
   align-items: center;

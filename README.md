@@ -1,71 +1,84 @@
-# 🚀 Premium Animated Portfolio Website - Arafi Ramadhan Maulana
+# Arafi Ramadhan Maulana - Portfolio & Analytics Dashboard
 
-Situs portofolio pribadi premium dengan arsitektur interaktif dan desain *glassmorphic* modern. Dibangun menggunakan teknologi web murni untuk performa pemuatan super cepat, ramah SEO, dan didukung sistem animasi berkelas dunia.
+Ini adalah repositori untuk website portofolio profesional saya, lengkap dengan sistem pelacakan metrik analitik (dashboard admin) khusus. Proyek ini dibangun dari awal untuk merepresentasikan pengalaman, keterampilan, dan portofolio saya sebagai Data Scientist dan Full-Stack Developer.
 
-Situs ini dikustomisasi penuh berdasarkan latar belakang akademik Anda di **Sains Data ITERA**, serta pengalaman profesional Anda di **TELKOMSEL** dan **eBdesk Teknologi**.
+Website ini berfokus pada performa, aksesibilitas, dan kemudahan dalam mengelola data analitik kunjungan.
 
----
+## Fitur Utama
 
-## ✨ Fitur Utama & Keunggulan
-- **Split-Gate Opening Entrance**: Pintu geser pembuka (*preloader curtain*) dengan bilah persentase kemajuan pemuatan ketika situs pertama kali dibuka.
-- **Ambient Glowing Backdrops**: Pendaran cahaya gradasi dinamis lambat di latar belakang obsidian gelap yang memberi kesan premium dan futuristik.
-- **Lenis Inertial Smooth Scrolling**: Sistem gulir halaman yang sangat lembut dan memiliki efek inersia untuk kenyamanan membaca tinggi.
-- **Magnetic Navigation Pills**: Efek pil melayang pada menu header desktop maupun menu mobile bawah yang bergeser mengikuti menu aktif secara elastis menggunakan **GSAP & ScrollTrigger**.
-- **Interactive Custom Cursor**: Kursor khusus berbentuk lingkaran ganda yang membesar dan berubah warna saat diarahkan ke elemen tombol, kartu, atau tautan.
-- **Typing Rotating Subtitles**: Efek ketik dinamis bergantian pada subjudul hero utama ("Data Scientist", "Full-Stack Web Developer", "AI Practitioner").
-- **Dynamic Category Filter**: Efek transisi pemfilteran karya/portofolio yang bergulir dan memudar secara halus menggunakan akselerasi perangkat keras GSAP.
-- **Responsive Timelines**: Perpindahan tab visual antara *Pengalaman Kerja* dan *Pengalaman Organisasi* dengan titik penunjuk waktu adaptif.
-- **Active Contact Redirect**: Pengisian formulir kontak yang terintegrasi langsung dengan pemformatan otomatis pengiriman pesan ke **WhatsApp** dan email Anda.
+### 1. Website Portofolio (`/index.html`)
+- **Desain Modern & Responsif:** Tampilan konsisten dan profesional di seluruh perangkat (mobile, tablet, desktop).
+- **Efek Partikel Interaktif:** Menggunakan partikel kanvas ringan untuk latar belakang hero yang tidak memberatkan performa.
+- **GSAP Animations:** Animasi scroll dan transisi elemen yang mulus di berbagai bagian (GSAP & ScrollTrigger).
+- **Proyek & Riwayat Pekerjaan:** Katalog dinamis yang berisi rincian pekerjaan dan sertifikasi.
+- **Formulir Kontak (Terintegrasi ke Formspree):** Pengunjung dapat langsung mengirim pesan yang terhubung ke email tanpa memerlukan backend khusus.
+- **Tracker Pengunjung Kustom:** Skrip pemantauan ringan (frontend tracker) yang merekam IP, lokasi, device, dan durasi sesi yang dikirim secara asinkron ke database.
 
----
+### 2. Dashboard Analitik Admin (`/admin.html`)
+- **Keamanan:** Dilengkapi sistem *password gate* dengan hashing lokal (SHA-256) untuk mencegah akses tidak sah.
+- **Visualisasi Tren Trafik:** Grafik bar yang dibangun secara native untuk memantau trafik pengunjung dalam 7 hari terakhir.
+- **Filter & Pencarian:** Fitur penyaringan data langsung (by device, search bar) yang sangat responsif.
+- **Ekspor Data ke CSV:** Mampu mengekspor seluruh log data pelacakan yang ada ke dalam format CSV untuk diaudit secara luring.
+- **Sistem Status:** Indikator *Online/Offline* sistem yang memonitor ketersediaan jaringan secara real-time.
 
-## 📂 Struktur Berkas
-```bash
+## Struktur Folder
+
+```text
 portofolio/
-├── index.html   # Struktur Semantik HTML5, CDN CDNs, Konten LinkedIn & CV
-├── style.css    # Sistem Desain CSS, Variabel HSL, Animasi Keyframes, Layar Responsif
-└── script.js    # Logika Interaktif, GSAP Timelines, Cursor, Lenis, dan Form WhatsApp
+├── index.html            # Halaman utama portofolio
+├── admin.html            # Halaman admin dashboard (membutuhkan password)
+├── assets/
+│   ├── css/
+│   │   ├── admin.css     # Styling khusus dashboard admin
+│   │   └── portfolio.css # Styling utama portofolio (variabel, layout, animasi)
+│   ├── js/
+│   │   ├── admin.js      # Logika otentikasi admin, fetch data Supabase, dan interaksi dashboard
+│   │   ├── script.js     # Logika animasi frontend (GSAP, canvas, form handling)
+│   │   └── tracker.js    # Skrip background pelacak sesi pengunjung 
+│   └── images/           # Aset gambar, sertifikat, dan tangkapan layar proyek
+└── vercel.json           # Konfigurasi routing dan HTTP headers untuk Vercel
 ```
 
----
+## Teknologi yang Digunakan
 
-## 🛠️ Cara Menjalankan Secara Lokal
+Proyek ini dibuat menggunakan teknologi fundamental web agar tetap modular, sangat cepat, dan mudah dipelihara.
 
-Situs ini dibuat menggunakan *Vanilla Stack* murni tanpa memerlukan kompilasi rumit, sehingga Anda dapat langsung menjalankannya dengan cara:
+- **Frontend Core:** HTML5, CSS3 murni (tanpa framework), Vanilla JavaScript.
+- **Animasi:** GSAP (GreenSock Animation Platform).
+- **Ikonography:** Lucide Icons.
+- **Database & API:** Supabase (PostgreSQL & REST API) untuk menyimpan data tracking analitik secara terpusat.
+- **Hosting:** Vercel (CI/CD otomatis dari GitHub).
 
-### Cara 1: Langsung Buka di Browser
-1. Masuk ke folder `portofolio/` Anda.
-2. Klik dua kali pada file `index.html`.
-3. Halaman akan langsung terbuka di browser favorit Anda!
+## Cara Menjalankan Project (Local Development)
 
-### Cara 2: Menggunakan VS Code Live Server (Sangat Direkomendasikan)
-1. Buka folder `portofolio/` di aplikasi **VS Code**.
-2. Instal ekstensi **Live Server** (oleh Ritwick Dey) jika belum terinstal.
-3. Klik tombol **Go Live** di sudut kanan bawah VS Code.
-4. Situs akan berjalan di `http://127.0.0.1:5500` dengan fitur *hot-reload* otomatis setiap kali Anda mengubah kode.
+Proyek ini tidak memerlukan *build tools* rumit (seperti Webpack/Vite) atau *bundler* apa pun. Cukup jalankan *local server* pada folder utama repositori.
 
-### Cara 3: Menggunakan Server Lokal Python
-Jika Anda memiliki Python terinstal di komputer, jalankan perintah berikut di PowerShell atau Command Prompt pada direktori proyek:
-```bash
-python -m http.server 8000
-```
-Lalu buka alamat `http://localhost:8000` di web browser Anda.
+1. Clone repositori ini:
+   ```bash
+   git clone https://github.com/arafiramadhanmaulana/portofolio.git
+   ```
+2. Masuk ke folder proyek:
+   ```bash
+   cd portofolio
+   ```
+3. Gunakan *live server* atau *http.server* bawaan Python:
+   ```bash
+   python -m http.server 3000
+   ```
+   Atau jika menggunakan ekstensi VS Code, Anda bisa langsung klik **"Go Live"**.
+4. Buka browser dan arahkan ke `http://localhost:3000`.
 
----
+*Catatan:* Karena fitur form dan tracking terhubung langsung ke API pihak ketiga, pastikan koneksi internet aktif agar fungsionalitas tersebut dapat diuji.
 
-## 🚀 Cara Penyebaran (Deployment) ke Internet
+## Deployment
 
-Situs web berbasis statis ini sangat mudah diunggah secara **GRATIS** ke internet agar dapat diakses oleh perekrut (*recruiter*) melalui berbagai layanan:
+Proyek ini di-*deploy* melalui **Vercel** secara otomatis di setiap kali terdapat pembaruan (*push*) ke *branch* utama di GitHub.
+File konfigurasi `vercel.json` telah disiapkan untuk memastikan setiap akses *route* (seperti `/admin`) tertangani dengan aman dan efisien, termasuk integrasi header khusus bila perlu.
 
-### 1. GitHub Pages (Paling Mudah)
-1. Buat sebuah repositori baru di akun GitHub Anda (misal: `portofolio`).
-2. Unggah file `index.html`, `style.css`, dan `script.js` ke repositori tersebut.
-3. Buka tab **Settings** repositori Anda -> pilih menu **Pages** di sebelah kiri.
-4. Pada opsi *Build and deployment*, pilih branch `main` (atau `master`) dan folder `/ (root)`, lalu klik **Save**.
-5. Dalam beberapa menit, portofolio Anda akan aktif di `https://username-anda.github.io/repositori-anda/`.
+## Informasi Kontak
 
-### 2. Vercel / Netlify
-1. Masuk ke situs [Vercel](https://vercel.com) atau [Netlify](https://www.netlify.com).
-2. Hubungkan dengan akun GitHub Anda.
-3. Pilih repositori portofolio ini, lalu klik **Deploy** tanpa perlu melakukan pengaturan build command apa pun.
-4. Situs Anda akan langsung memiliki domain `.vercel.app` atau `.netlify.app` gratis dalam hitungan detik!
+Jika Anda memiliki pertanyaan teknis, peluang kolaborasi, atau butuh bantuan lebih lanjut, silakan hubungi saya melalui:
+
+- **Website:** [https://arafiramadhanmaulana.vercel.app](https://arafiramadhanmaulana.vercel.app)
+- **LinkedIn:** [Arafi Ramadhan Maulana](https://www.linkedin.com/in/arafi-ramadhan-maulana/)
+- **GitHub:** [@arafiramadhanmaulana](https://github.com/arafiramadhanmaulana)

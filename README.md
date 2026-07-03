@@ -1,84 +1,78 @@
-# Arafi Ramadhan Maulana - Portfolio & Analytics Dashboard
+# Arafi Ramadhan Maulana Portfolio
 
-Ini adalah repositori untuk website portofolio profesional saya, lengkap dengan sistem pelacakan metrik analitik (dashboard admin) khusus. Proyek ini dibangun dari awal untuk merepresentasikan pengalaman, keterampilan, dan portofolio saya sebagai Data Scientist dan Full-Stack Developer.
+This is the source code for my personal portfolio website, complete with a fully custom-built analytics dashboard. It serves as a centralized showcase of my professional experience, academic background, and technical projects in Data Science and Software Engineering.
 
-Website ini berfokus pada performa, aksesibilitas, dan kemudahan dalam mengelola data analitik kunjungan.
+Beyond being a static portfolio, this project includes a robust visitor tracking engine that securely records session metrics, device information, and geographic data, which are then visualized in a dedicated SaaS-like admin portal.
 
-## Fitur Utama
+## Features
 
-### 1. Website Portofolio (`/index.html`)
-- **Desain Modern & Responsif:** Tampilan konsisten dan profesional di seluruh perangkat (mobile, tablet, desktop).
-- **Efek Partikel Interaktif:** Menggunakan partikel kanvas ringan untuk latar belakang hero yang tidak memberatkan performa.
-- **GSAP Animations:** Animasi scroll dan transisi elemen yang mulus di berbagai bagian (GSAP & ScrollTrigger).
-- **Proyek & Riwayat Pekerjaan:** Katalog dinamis yang berisi rincian pekerjaan dan sertifikasi.
-- **Formulir Kontak (Terintegrasi ke Formspree):** Pengunjung dapat langsung mengirim pesan yang terhubung ke email tanpa memerlukan backend khusus.
-- **Tracker Pengunjung Kustom:** Skrip pemantauan ringan (frontend tracker) yang merekam IP, lokasi, device, dan durasi sesi yang dikirim secara asinkron ke database.
+- **Personal Portfolio:** Clean, dark-mode focused landing page to showcase professional identity.
+- **Experience Timeline:** Interactive and responsive timeline for work and organizational history.
+- **Projects Showcase:** Grid-based presentation of data science and web development projects.
+- **Skills Section:** Organized breakdown of technical stacks, tools, and methodologies.
+- **Website Analytics Dashboard:** A private, authenticated admin portal (`/admin.html`) built from scratch.
+- **Visitor Tracking:** Real-time data capture (IP, device, browser, OS, duration, interaction clicks) stored seamlessly in a database.
+- **Responsive Design:** Optimized layout for desktop, tablet, and mobile viewing.
+- **Dark Mode:** Native dark UI prioritizing accessibility and modern aesthetics.
 
-### 2. Dashboard Analitik Admin (`/admin.html`)
-- **Keamanan:** Dilengkapi sistem *password gate* dengan hashing lokal (SHA-256) untuk mencegah akses tidak sah.
-- **Visualisasi Tren Trafik:** Grafik bar yang dibangun secara native untuk memantau trafik pengunjung dalam 7 hari terakhir.
-- **Filter & Pencarian:** Fitur penyaringan data langsung (by device, search bar) yang sangat responsif.
-- **Ekspor Data ke CSV:** Mampu mengekspor seluruh log data pelacakan yang ada ke dalam format CSV untuk diaudit secara luring.
-- **Sistem Status:** Indikator *Online/Offline* sistem yang memonitor ketersediaan jaringan secara real-time.
+## Tech Stack
 
-## Struktur Folder
+The project is built intentionally with core, lightweight web technologies to maintain absolute control over performance and structure without heavy bundlers.
+
+**Frontend:**
+- HTML5
+- CSS3 (Vanilla, custom grid/flexbox layouts)
+- JavaScript (ES6+, modular processing)
+
+**Analytics & Visualizations:**
+- Chart.js (Data visualization)
+- GSAP (GreenSock Animation Platform)
+
+**Backend & Database:**
+- Supabase (PostgreSQL for session logs, REST API integration)
+
+**Deployment:**
+- Vercel (CI/CD pipeline)
+
+## Project Structure
 
 ```text
 portofolio/
-├── index.html            # Halaman utama portofolio
-├── admin.html            # Halaman admin dashboard (membutuhkan password)
 ├── assets/
 │   ├── css/
-│   │   ├── admin.css     # Styling khusus dashboard admin
-│   │   └── portfolio.css # Styling utama portofolio (variabel, layout, animasi)
-│   ├── js/
-│   │   ├── admin.js      # Logika otentikasi admin, fetch data Supabase, dan interaksi dashboard
-│   │   ├── script.js     # Logika animasi frontend (GSAP, canvas, form handling)
-│   │   └── tracker.js    # Skrip background pelacak sesi pengunjung 
-│   └── images/           # Aset gambar, sertifikat, dan tangkapan layar proyek
-└── vercel.json           # Konfigurasi routing dan HTTP headers untuk Vercel
+│   │   ├── admin.css       # Custom styles for the SaaS analytics dashboard
+│   │   └── portfolio.css   # Main styles for the public portfolio
+│   ├── images/             # All static images, certificates, and thumbnails
+│   └── js/
+│       ├── admin.js        # Dashboard engine (auth, metrics aggregation, charts)
+│       ├── script.js       # Main portfolio logic (GSAP animations, form handling)
+│       └── tracker.js      # Background script for visitor telemetry
+├── admin.html              # Secure analytics dashboard
+├── index.html              # Main public portfolio page
+├── package.json            # Development dependencies (Vite)
+├── vercel.json             # Vercel deployment configuration
+└── robots.txt              # Search engine crawler instructions
 ```
 
-## Teknologi yang Digunakan
+## Installation
 
-Proyek ini dibuat menggunakan teknologi fundamental web agar tetap modular, sangat cepat, dan mudah dipelihara.
+To run this project locally, make sure you have Node.js installed. We use Vite as a fast local development server.
 
-- **Frontend Core:** HTML5, CSS3 murni (tanpa framework), Vanilla JavaScript.
-- **Animasi:** GSAP (GreenSock Animation Platform).
-- **Ikonography:** Lucide Icons.
-- **Database & API:** Supabase (PostgreSQL & REST API) untuk menyimpan data tracking analitik secara terpusat.
-- **Hosting:** Vercel (CI/CD otomatis dari GitHub).
+1. Clone the repository:
+```bash
+git clone https://github.com/arafiramadhanmaulana/portofolio.git
+cd portofolio
+```
 
-## Cara Menjalankan Project (Local Development)
+2. Install dependencies:
+```bash
+npm install
+```
 
-Proyek ini tidak memerlukan *build tools* rumit (seperti Webpack/Vite) atau *bundler* apa pun. Cukup jalankan *local server* pada folder utama repositori.
+3. Start the development server:
+```bash
+npm run dev
+```
 
-1. Clone repositori ini:
-   ```bash
-   git clone https://github.com/arafiramadhanmaulana/portofolio.git
-   ```
-2. Masuk ke folder proyek:
-   ```bash
-   cd portofolio
-   ```
-3. Gunakan *live server* atau *http.server* bawaan Python:
-   ```bash
-   python -m http.server 3000
-   ```
-   Atau jika menggunakan ekstensi VS Code, Anda bisa langsung klik **"Go Live"**.
-4. Buka browser dan arahkan ke `http://localhost:3000`.
-
-*Catatan:* Karena fitur form dan tracking terhubung langsung ke API pihak ketiga, pastikan koneksi internet aktif agar fungsionalitas tersebut dapat diuji.
-
-## Deployment
-
-Proyek ini di-*deploy* melalui **Vercel** secara otomatis di setiap kali terdapat pembaruan (*push*) ke *branch* utama di GitHub.
-File konfigurasi `vercel.json` telah disiapkan untuk memastikan setiap akses *route* (seperti `/admin`) tertangani dengan aman dan efisien, termasuk integrasi header khusus bila perlu.
-
-## Informasi Kontak
-
-Jika Anda memiliki pertanyaan teknis, peluang kolaborasi, atau butuh bantuan lebih lanjut, silakan hubungi saya melalui:
-
-- **Website:** [https://arafiramadhanmaulana.vercel.app](https://arafiramadhanmaulana.vercel.app)
-- **LinkedIn:** [Arafi Ramadhan Maulana](https://www.linkedin.com/in/arafi-ramadhan-maulana/)
-- **GitHub:** [@arafiramadhanmaulana](https://github.com/arafiramadhanmaulana)
+The application will start immediately, usually accessible at `http://localhost:5173/`. 
+*Note: Ensure you have an active internet connection if you want the visitor tracker and analytics API (Supabase) to function correctly during local testing.*

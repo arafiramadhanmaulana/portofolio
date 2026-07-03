@@ -1,0 +1,11 @@
+{
+  "name": "arafi-portfolio",
+  "version": "1.0.0",
+  "description": "Arafi Ramadhan Maulana Portfolio",
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
